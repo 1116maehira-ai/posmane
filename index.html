@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ポスマネ | 沖縄本島276施設のパンフレット流通管理サービス</title>
+<meta name="description" content="沖縄本島276施設へのパンフレット配布管理サービス。GPS+写真+ダッシュボードで完全可視化。1日¥16,000〜から契約縛りなしでお試し可能。DMM水族館 採用実績。">
+<meta property="og:title" content="ポスマネ | 沖縄本島276施設のパンフレット流通管理">
+<meta property="og:description" content="観光客は、置いてないパンフまでは見てくれません。機会損失をゼロにする、流通管理システム。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="./images/hero.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          teal: {
+            DEFAULT: '#0891b2',
+            deep: '#0e7490',
+            dark: '#155e75',
+            ink: '#083344',
+          },
+          coral: '#f97316',
+          gold: '#fbbf24',
+          sand: '#fdfaf5',
+          cream: '#fefcf7',
+        },
+        fontFamily: {
+          serif: ['"Noto Serif JP"', 'serif'],
+          sans: ['"Noto Sans JP"', 'sans-serif'],
+          inter: ['"Inter"', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #083344;
+    background: #fefcf7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* === 装飾的なグラデーション背景 === */
+  .bg-ocean-fade {
+    background: linear-gradient(180deg, #fefcf7 0%, #f0fbff 50%, #fefcf7 100%);
+  }
+  .bg-ocean-deep {
+    background: linear-gradient(135deg, #083344 0%, #0e7490 50%, #0891b2 100%);
+  }
+
+  /* === 波の装飾 === */
+  .wave-divider {
+    position: relative;
+    height: 80px;
+    overflow: hidden;
+  }
+  .wave-divider svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* === セリフ大見出し === */
+  .display-jp {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  /* === 数字強調 === */
+  .num-hero {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* === セクション目印（縦の細線 + ドット） === */
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #0891b2;
+  }
+  .section-tag::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: #0891b2;
+  }
+
+  /* === スクロールリビール === */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* === CTAボタン === */
+  .btn-primary {
+    background: #f97316;
+    color: white;
+    padding: 18px 36px;
+    border-radius: 999px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(249, 115, 22, 0.4);
+  }
+  .btn-secondary {
+    background: white;
+    color: #0e7490;
+    padding: 18px 36px;
+    border-radius: 999px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1.5px solid #0891b2;
+    transition: all 0.3s ease;
+  }
+  .btn-secondary:hover {
+    background: #0891b2;
+    color: white;
+  }
+
+  /* === バッジ === */
+  .badge-trust {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(251, 191, 36, 0.12);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #92400e;
+  }
+
+  /* === チェックリスト === */
+  .checklist-item {
+    display: flex;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(8, 51, 68, 0.08);
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .checklist-box {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #f97316;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+
+  /* === システムカード === */
+  .feature-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid rgba(8, 51, 68, 0.06);
+    transition: all 0.4s ease;
+  }
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px -12px rgba(8, 51, 68, 0.12);
+    border-color: rgba(8, 145, 178, 0.2);
+  }
+
+  /* === 差別化番号 === */
+  .diff-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+  }
+
+  /* === FAQ === */
+  .faq-item {
+    border-bottom: 1px solid rgba(8, 51, 68, 0.1);
+  }
+  .faq-trigger {
+    width: 100%;
+    text-align: left;
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    font-weight: 700;
+    color: #083344;
+    font-size: 17px;
+  }
+  .faq-trigger .icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid #0891b2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: #0891b2;
+  }
+  .faq-item.open .faq-trigger .icon {
+    background: #0891b2;
+    color: white;
+    transform: rotate(45deg);
+  }
+  .faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .faq-content-inner {
+    padding-bottom: 24px;
+    color: rgba(8, 51, 68, 0.7);
+    line-height: 1.8;
+  }
+
+  /* === ナビゲーション === */
+  .nav-link {
+    color: rgba(8, 51, 68, 0.7);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  .nav-link:hover { color: #0891b2; }
+
+  /* === ヒーロー大見出し === */
+  .hero-title {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  /* === MONBRAN風ヒーロー（正解構図：キャラ主役・文字脇役） === */
+  .hero-stage {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 80px;
+    background:
+      radial-gradient(ellipse at top right, rgba(8, 145, 178, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(249, 115, 22, 0.06) 0%, transparent 50%),
+      linear-gradient(180deg, #fefcf7 0%, #f0fbff 100%);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ドット背景 */
+  .hero-stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(8, 51, 68, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+    opacity: 0.4;
+    z-index: 0;
+  }
+
+  /* === 上部ステージ：キャラ主役エリア === */
+  .hero-canvas {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 24px 0;
+    z-index: 2;
+  }
+
+  /* スクロールダウン縦テキスト */
+  .scroll-down-vertical {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    color: rgba(8, 145, 178, 0.5);
+    z-index: 3;
+  }
+  .scroll-down-vertical span {
+    display: inline-block;
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(8px); }
+  }
+
+  /* === 中央：主役の動画プレースホルダー === */
+  .hero-main-stage {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: 20px 0;
+  }
+  .video-placeholder {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 9 / 13;
+    background: linear-gradient(135deg, #e0f2fe 0%, #cffafe 50%, #fef3c7 100%);
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow:
+      0 30px 60px -15px rgba(8, 51, 68, 0.22),
+      0 0 0 6px white,
+      0 0 0 7px rgba(8, 145, 178, 0.15);
+    animation: floaty 6s ease-in-out infinite;
+    z-index: 2;
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+    50% { transform: translateY(-10px) rotate(0.5deg); }
+  }
+  .video-placeholder-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+  }
+  .video-play-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 24px rgba(8, 145, 178, 0.25);
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .video-play-icon::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid rgba(8, 145, 178, 0.3);
+    animation: ping 2s ease-out infinite;
+  }
+  @keyframes ping {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+  .character-silhouette {
+    position: absolute;
+    bottom: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle at 30% 30%, #fef3c7 0%, #fde68a 60%, #fbbf24 100%);
+    border-radius: 50%;
+    filter: blur(1px);
+    opacity: 0.7;
+    z-index: 1;
+  }
+  .character-silhouette::before {
+    content: '';
+    position: absolute;
+    top: -36px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 110px;
+    background: inherit;
+    border-radius: 50%;
+  }
+
+  /* === 右上：脇役のロゴ＋誕生コピー === */
+  .birth-side {
+    position: absolute;
+    top: 8%;
+    right: 4%;
+    z-index: 5;
+    text-align: right;
+    max-width: 340px;
+  }
+  .birth-ribbon {
+    display: inline-block;
+    background: white;
+    padding: 5px 16px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #0e7490;
+    border: 1.5px solid rgba(8, 145, 178, 0.3);
+    box-shadow: 0 4px 12px rgba(8, 51, 68, 0.06);
+    margin-bottom: 14px;
+  }
+  .birth-logo {
+    height: 56px;
+    width: auto;
+    margin-bottom: 12px;
+    margin-left: auto;
+    filter: drop-shadow(0 4px 12px rgba(8, 51, 68, 0.1));
+  }
+  .birth-tagline {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: clamp(28px, 3.8vw, 48px);
+    line-height: 1.1;
+    color: #083344;
+    letter-spacing: -0.02em;
+  }
+  .birth-tagline-en {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #0891b2;
+    letter-spacing: 0.15em;
+    margin-top: 6px;
+  }
+  .birth-breadcrumb {
+    margin-top: 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: rgba(8, 51, 68, 0.5);
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+  .birth-breadcrumb::before {
+    content: '⌂';
+    color: #0891b2;
+    font-size: 12px;
+  }
+
+  /* === 吹き出し === */
+  .speech-bubble {
+    position: absolute;
+    background: white;
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0 8px 20px rgba(8, 51, 68, 0.15);
+    white-space: nowrap;
+    z-index: 6;
+  }
+  .speech-bubble::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+  .bubble-teal { background: #0891b2; }
+  .bubble-coral { background: #f97316; }
+  .bubble-gold { background: #fbbf24; color: #083344; }
+  .bubble-pink { background: #ec4899; }
+  .bubble-purple { background: #8b5cf6; }
+
+  /* MONBRAN流の配置：キャラの周囲に散らす */
+  .bubble-1 {  /* 左上：わたしたち */
+    top: 14%;
+    left: 12%;
+    animation: bubbleBob 4s ease-in-out infinite;
+  }
+  .bubble-1::after {
+    bottom: -8px; right: 24px;
+    border-width: 8px 8px 0 0;
+    border-color: #0891b2 transparent transparent transparent;
+  }
+  .bubble-2 {  /* 上中央寄り：配布、変えます！ */
+    top: 8%;
+    left: 42%;
+    animation: bubbleBob 4.5s ease-in-out infinite 0.5s;
+  }
+  .bubble-2::after {
+    bottom: -8px; left: 24px;
+    border-width: 8px 0 0 8px;
+    border-color: #f97316 transparent transparent transparent;
+  }
+  .bubble-3 {  /* 中央左：キャラのセリフ */
+    top: 48%;
+    left: 22%;
+    animation: bubbleBob 5s ease-in-out infinite 1s;
+  }
+  .bubble-3::after {
+    bottom: -8px; right: 30px;
+    border-width: 8px 8px 0 0;
+    border-color: #fbbf24 transparent transparent transparent;
+  }
+  .bubble-4 {  /* 中央右：キャラのセリフ */
+    top: 40%;
+    right: 16%;
+    animation: bubbleBob 4.2s ease-in-out infinite 1.5s;
+  }
+  .bubble-4::after {
+    bottom: -8px; left: 30px;
+    border-width: 8px 0 0 8px;
+    border-color: #ec4899 transparent transparent transparent;
+  }
+  .bubble-5 {  /* 右下：パンチライン */
+    top: 62%;
+    right: 6%;
+    animation: bubbleBob 4.8s ease-in-out infinite 0.3s;
+  }
+  .bubble-5::after {
+    top: -8px; right: 30px;
+    border-width: 0 8px 8px 0;
+    border-color: transparent #8b5cf6 transparent transparent;
+  }
+  @keyframes bubbleBob {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
+  }
+
+  /* 浮かぶ装飾 */
+  .floating-deco {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .deco-star {
+    top: 20%;
+    right: 28%;
+    width: 32px;
+    height: 32px;
+    color: #fbbf24;
+    animation: spinSlow 8s linear infinite;
+  }
+  .deco-circle {
+    top: 35%;
+    right: 8%;
+    width: 16px;
+    height: 16px;
+    background: #f97316;
+    border-radius: 50%;
+    animation: bubbleBob 3s ease-in-out infinite;
+  }
+  .deco-triangle {
+    top: 28%;
+    left: 6%;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 12px 20px 12px;
+    border-color: transparent transparent #0891b2 transparent;
+    animation: spinSlow 12s linear infinite reverse;
+  }
+  @keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* === 下部ステージ：ぶち抜き斜めゴシック === */
+  .mega-stage {
+    position: relative;
+    width: 100%;
+    padding: 0 0 80px;
+    overflow: hidden;
+    z-index: 3;
+  }
+  .mega-copy {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    font-size: clamp(70px, 14vw, 220px);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    transform: rotate(-7deg) translateX(-120vw);
+    opacity: 0;
+    white-space: nowrap;
+    background: linear-gradient(135deg, #0891b2 0%, #f97316 50%, #fbbf24 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    will-change: transform;
+    padding: 24px 0;
+    text-align: center;
+    /* テキスト輪郭強調用に微妙なdrop-shadow */
+    filter: drop-shadow(0 6px 18px rgba(8, 51, 68, 0.08));
+  }
+  .mega-copy.is-animating {
+    animation: megaSlideIn 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes megaSlideIn {
+    0% { transform: rotate(-7deg) translateX(-120vw); opacity: 0; }
+    60% { transform: rotate(-7deg) translateX(6vw); opacity: 1; }
+    80% { transform: rotate(-7deg) translateX(-2vw); }
+    100% { transform: rotate(-7deg) translateX(0); }
+  }
+
+  /* メガコピー手前に飛び出すサブキャラ要素（ピン） */
+  .mega-overlay-char {
+    position: absolute;
+    bottom: 12%;
+    left: 4%;
+    width: 140px;
+    z-index: 4;
+    pointer-events: none;
+    animation: floaty 4.5s ease-in-out infinite;
+  }
+  .mega-overlay-char img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 8px 20px rgba(8, 51, 68, 0.18));
+    transform: rotate(-8deg);
+  }
+
+  /* WE DO GREAT JOBS 風の右下サブ英文 */
+  .mega-side-en {
+    position: absolute;
+    bottom: 20%;
+    right: 6%;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(14px, 1.5vw, 22px);
+    letter-spacing: 0.15em;
+    color: #0891b2;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .mega-side-en::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1.5px;
+    background: #0891b2;
+  }
+
+  /* メガコピー下のサブテキスト */
+  .mega-sub {
+    text-align: center;
+    margin-top: 30px;
+    padding: 0 24px;
+    color: rgba(8, 51, 68, 0.7);
+    line-height: 1.9;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ヒーローCTA */
+  .hero-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 28px;
+    justify-content: center;
+    position: relative;
+    z-index: 5;
+  }
+
+  @media (max-width: 1024px) {
+    .scroll-down-vertical { display: none; }
+    .birth-side {
+      position: relative;
+      top: auto;
+      right: auto;
+      max-width: 100%;
+      text-align: center;
+      margin: 0 auto 20px;
+      padding: 0 24px;
+    }
+    .birth-logo { margin: 0 auto 12px; }
+    .birth-breadcrumb { justify-content: center; }
+    .hero-main-stage { min-height: 50vh; }
+  }
+  @media (max-width: 768px) {
+    .speech-bubble {
+      font-size: 11px;
+      padding: 7px 14px;
+    }
+    .bubble-1 { left: 4%; top: 6%; }
+    .bubble-2 { left: 40%; top: 2%; }
+    .bubble-3 { left: 2%; top: 42%; }
+    .bubble-4 { right: 2%; top: 32%; }
+    .bubble-5 { right: 4%; top: 58%; }
+    .video-placeholder { max-width: 260px; }
+    .mega-overlay-char { width: 90px; bottom: 10%; }
+    .mega-side-en { display: none; }
+    .deco-star { right: 32%; }
+  }
+
+  /* === 数字メトリクス === */
+  .metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .metric-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 56px;
+    color: #f97316;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .metric-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(8, 51, 68, 0.6);
+  }
+
+  /* === フォーム === */
+  .form-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid rgba(8, 51, 68, 0.15);
+    border-radius: 10px;
+    background: white;
+    font-size: 15px;
+    transition: border-color 0.2s ease;
+    font-family: inherit;
+  }
+  .form-input:focus {
+    outline: none;
+    border-color: #0891b2;
+    box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.1);
+  }
+  .form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #083344;
+    margin-bottom: 8px;
+  }
+  .form-required {
+    color: #f97316;
+    margin-left: 4px;
+  }
+
+  /* === ロゴ === */
+  .logo-img {
+    height: 44px;
+    width: auto;
+  }
+
+  /* === レスポンシブ調整 === */
+  @media (max-width: 768px) {
+    .metric-num { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== NAVIGATION ============== -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-md border-b border-teal-ink/5">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+    <a href="#top" class="flex items-center">
+      <img src="./images/logo.png" alt="ポスマネ" class="logo-img">
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#problem" class="nav-link">課題</a>
+      <a href="#solution" class="nav-link">解決</a>
+      <a href="#why" class="nav-link">選ばれる理由</a>
+      <a href="#system" class="nav-link">システム</a>
+      <a href="#pricing" class="nav-link">料金</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+    </div>
+    <a href="#contact" class="bg-coral text-white text-sm font-bold px-5 py-2.5 rounded-full hover:bg-orange-600 transition">
+      1日プランで試す
+    </a>
+  </div>
+</nav>
+
+<!-- ============== HERO (MONBRAN正解構図：キャラ主役・ロゴ脇役) ============== -->
+<section id="top" class="hero-stage">
+
+  <!-- 縦スクロール案内（左端） -->
+  <div class="scroll-down-vertical">
+    <span>Scroll Down ・ Scroll Down ・ Scroll Down</span>
+  </div>
+
+  <!-- ============ 上部ステージ：キャラ主役エリア ============ -->
+  <div class="hero-canvas">
+
+    <!-- 浮かぶ装飾 -->
+    <svg class="floating-deco deco-star" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2l2.39 7.36H22l-6.18 4.49 2.36 7.27L12 16.63l-6.18 4.49 2.36-7.27L2 9.36h7.61z"/>
+    </svg>
+    <div class="floating-deco deco-circle"></div>
+    <div class="floating-deco deco-triangle"></div>
+
+    <!-- 吹き出し装飾（キャラがしゃべってる空間） -->
+    <div class="speech-bubble bubble-teal bubble-1">わたしたち</div>
+    <div class="speech-bubble bubble-coral bubble-2">配布、変えます！</div>
+    <div class="speech-bubble bubble-gold bubble-3">集客チャンス逃さない！</div>
+    <div class="speech-bubble bubble-pink bubble-4">配布、可視化！</div>
+    <div class="speech-bubble bubble-purple bubble-5">DMM水族館 採用実績</div>
+
+    <!-- 右上：脇役のロゴ＋誕生コピー -->
+    <div class="birth-side">
+      <div class="birth-ribbon">
+        <span class="mr-1">✦</span> 沖縄観光のパンフ流通サービス <span class="ml-1">✦</span>
+      </div>
+      <div>
+        <img src="./images/logo.png" alt="ポスマネ - POSTING MANAGER" class="birth-logo">
+      </div>
+      <h1 class="birth-tagline">
+        爆誕、<br>しました。
+      </h1>
+      <div class="birth-tagline-en">POSTING MANAGER for OKINAWA</div>
+      <div class="birth-breadcrumb">
+        <span>トップ</span>
+        <span>・・・・・</span>
+        <span>ポスマネについて</span>
+      </div>
+    </div>
+
+    <!-- 中央：主役の動画プレースホルダー -->
+    <div class="hero-main-stage">
+      <div class="video-placeholder">
+        <!-- 動画が入る予定のプレースホルダー。後で <video> タグに差し替え -->
+        <div class="character-silhouette"></div>
+        <div class="video-placeholder-inner">
+          <div class="video-play-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="#0891b2">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+          <div class="text-xs font-bold tracking-widest text-teal-deep mb-2">CHARACTER MOVIE</div>
+          <p class="text-sm text-teal-ink/70 leading-relaxed">
+            ポスマネキャラクター<br>動画がここに入ります
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ 下部ステージ：ぶち抜き斜めゴシック ============ -->
+  <div class="mega-stage">
+
+    <!-- 手前に飛び出すサブキャラ要素（ロゴアイコンを使う） -->
+    <div class="mega-overlay-char">
+      <img src="./images/logo.png" alt="">
+    </div>
+
+    <!-- 右下のサブ英文 -->
+    <div class="mega-side-en">WE DELIVER OKINAWA!</div>
+
+    <!-- ぶち抜き斜めゴシック -->
+    <div class="mega-copy" id="megaCopy">配ってまいりまーす！</div>
+
+    <!-- サブテキスト -->
+    <div class="max-w-3xl mx-auto mega-sub">
+      <p class="text-lg md:text-xl font-bold text-teal-ink mb-2">
+        観光客は、置いてないパンフまでは見てくれません。
+      </p>
+      <p>機会損失をゼロにする、流通管理システム。</p>
+      <p class="text-teal-deep font-bold">来場までの、最後のヒトオシ。</p>
+
+      <div class="hero-cta-row">
+        <a href="#contact" class="btn-primary">
+          1日¥16,000〜でお試し
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#pricing" class="btn-secondary">
+          料金を見る
+        </a>
+      </div>
+
+      <!-- ミニメトリクス -->
+      <div class="flex flex-wrap justify-center gap-8 md:gap-12 mt-10 pt-8 border-t border-teal-ink/10">
+        <div class="text-center">
+          <div class="num-hero text-3xl md:text-4xl text-teal-deep">276</div>
+          <div class="text-xs text-teal-ink/60 mt-1">配布施設</div>
+        </div>
+        <div class="text-center">
+          <div class="num-hero text-3xl md:text-4xl text-teal-deep">5</div>
+          <div class="text-xs text-teal-ink/60 mt-1">対応エリア</div>
+        </div>
+        <div class="text-center">
+          <div class="num-hero text-3xl md:text-4xl text-teal-deep">25<span class="text-base">/日</span></div>
+          <div class="text-xs text-teal-ink/60 mt-1">最大巡回数</div>
+        </div>
+        <div class="text-center">
+          <div class="num-hero text-3xl md:text-4xl text-coral">¥16,000<span class="text-base">〜</span></div>
+          <div class="text-xs text-teal-ink/60 mt-1">1日プラン</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============== PROBLEM / EMPATHY ============== -->
+<section id="problem" class="py-24 lg:py-32 bg-white">
+  <div class="max-w-6xl mx-auto px-6 lg:px-12">
+
+    <div class="text-center mb-16 reveal">
+      <span class="section-tag">PROBLEM</span>
+      <h2 class="display-jp text-3xl md:text-5xl text-teal-ink mt-6 mb-6">
+        こんな<span class="text-teal">"配布のグレーゾーン"</span>、<br class="md:hidden">ありませんか？
+      </h2>
+      <p class="text-teal-ink/60 max-w-2xl mx-auto">
+        紙パンフを大事な販促ツールとして使っている観光業の皆様が、<br class="hidden md:block">
+        密かに抱えているリアルな悩み。
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+      <!-- 左：チェックリスト -->
+      <div class="reveal">
+        <div class="checklist-item">
+          <div class="checklist-box"></div>
+          <div>
+            <p class="font-bold text-teal-ink text-lg mb-1">配ってきた、と聞いたけど</p>
+            <p class="text-teal-ink/65 text-sm">"どこに置かれたか"は知らない</p>
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="checklist-box"></div>
+          <div>
+            <p class="font-bold text-teal-ink text-lg mb-1">大事な販促予算で作ったパンフが</p>
+            <p class="text-teal-ink/65 text-sm">今もちゃんと棚にある自信がない</p>
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="checklist-box"></div>
+          <div>
+            <p class="font-bold text-teal-ink text-lg mb-1">繁忙期の前ほど"配り直したい"のに</p>
+            <p class="text-teal-ink/65 text-sm">そういう時こそ人手が足りない</p>
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="checklist-box"></div>
+          <div>
+            <p class="font-bold text-teal-ink text-lg mb-1">社員に配布を任せたら、</p>
+            <p class="text-teal-ink/65 text-sm">モチベが下がるのが見えてる</p>
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="checklist-box"></div>
+          <div>
+            <p class="font-bold text-teal-ink text-lg mb-1">エクセル管理 or 管理なし。</p>
+            <p class="text-teal-ink/65 text-sm">"やってる感"はあるけど、"効果測定"はできていない</p>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-8 border-t-2 border-teal">
+          <div class="flex items-center gap-4">
+            <h3 class="display-jp text-2xl md:text-3xl text-teal">
+              全部、ポスマネが<br>解決します。
+            </h3>
+            <div class="text-coral text-4xl">→</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右：補足ビジュアル -->
+      <div class="reveal reveal-delay-2 lg:sticky lg:top-24">
+        <div class="bg-gradient-to-br from-teal-ink to-teal-deep rounded-3xl p-10 lg:p-12 text-white relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-coral/10 rounded-full blur-3xl"></div>
+          <div class="absolute bottom-0 left-0 w-64 h-64 bg-teal/20 rounded-full blur-3xl"></div>
+
+          <div class="relative">
+            <div class="text-xs font-semibold tracking-widest text-gold mb-4">THE TRUTH</div>
+            <p class="display-jp text-2xl md:text-3xl leading-relaxed mb-8">
+              観光客が手に取った<br>
+              <span class="text-gold">"その瞬間"</span>が、<br>
+              本当のスタート。
+            </p>
+            <div class="space-y-4 text-white/80 leading-relaxed">
+              <p>でも、ほとんどの配布業者は<br>"配ったら終わり"です。</p>
+              <p>パンフを作るのに予算は出るのに、<br>配布後の流通には、誰も目を向けない。</p>
+              <p class="text-white font-bold pt-2">それが、観光業のいちばんの機会損失。</p>
+            </div>
+
+            <div class="mt-10 pt-8 border-t border-white/20 flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-gold flex items-center justify-center text-teal-ink font-bold">!</div>
+              <p class="text-sm text-white/80">置いてない棚から、注文は生まれない。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== SOLUTION ============== -->
+<section id="solution" class="py-24 lg:py-32 bg-ocean-fade relative overflow-hidden">
+  <div class="absolute top-1/4 left-0 w-72 h-72 rounded-full bg-teal/8 blur-3xl"></div>
+  <div class="absolute bottom-1/4 right-0 w-72 h-72 rounded-full bg-coral/8 blur-3xl"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div class="text-center mb-20 reveal">
+      <span class="section-tag">SOLUTION</span>
+      <h2 class="display-jp text-3xl md:text-5xl text-teal-ink mt-6 mb-6">
+        私たちが、<span class="text-teal">配布</span>を<br class="md:hidden">
+        <span class="text-coral">流通</span>に変えます。
+      </h2>
+      <p class="text-teal-ink/60 max-w-2xl mx-auto">
+        「配って終わり」の業者から、<br class="md:hidden">沖縄観光の流通網を運営する事業者へ。
+      </p>
+    </div>
+
+    <!-- 3つの価値 -->
+    <div class="grid lg:grid-cols-3 gap-8">
+
+      <!-- 1. ネットワーク -->
+      <div class="feature-card reveal">
+        <div class="flex items-start gap-4 mb-6">
+          <div class="w-14 h-14 rounded-2xl bg-coral/10 flex items-center justify-center flex-shrink-0">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold tracking-widest text-coral mb-1">01 / NETWORK</div>
+            <h3 class="display-jp text-xl text-teal-ink">沖縄本島276施設、<br>完全カバー</h3>
+          </div>
+        </div>
+        <p class="text-teal-ink/70 leading-relaxed mb-6">
+          ホテル・レンタカー・道の駅・観光地・空港まで。<br>
+          あなたの代わりに置いてくる業者ではなく、沖縄観光の流通を運営する事業者です。
+        </p>
+        <div class="grid grid-cols-3 gap-3 pt-6 border-t border-teal-ink/10">
+          <div class="text-center">
+            <div class="num-hero text-2xl text-teal-deep">276</div>
+            <div class="text-[10px] text-teal-ink/60 mt-1">施設</div>
+          </div>
+          <div class="text-center">
+            <div class="num-hero text-2xl text-teal-deep">5</div>
+            <div class="text-[10px] text-teal-ink/60 mt-1">エリア</div>
+          </div>
+          <div class="text-center">
+            <div class="num-hero text-2xl text-teal-deep">21<span class="text-sm">日</span></div>
+            <div class="text-[10px] text-teal-ink/60 mt-1">巡回周期</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. リアルタイム可視化 -->
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="flex items-start gap-4 mb-6">
+          <div class="w-14 h-14 rounded-2xl bg-teal/10 flex items-center justify-center flex-shrink-0">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold tracking-widest text-teal mb-1">02 / VISIBILITY</div>
+            <h3 class="display-jp text-xl text-teal-ink">いつ・どこに・何枚・誰が、<br>全部リアルタイム</h3>
+          </div>
+        </div>
+        <p class="text-teal-ink/70 leading-relaxed mb-6">
+          専用ダッシュボードで24時間確認可能。GPS位置・ラックの実物写真・先方担当者まで記録。「配ったかどうか」を疑う時代の終わり。
+        </p>
+        <div class="space-y-2 pt-6 border-t border-teal-ink/10">
+          <div class="flex items-center gap-2 text-sm text-teal-ink/70">
+            <span class="w-1.5 h-1.5 rounded-full bg-coral"></span>GPS座標で位置記録
+          </div>
+          <div class="flex items-center gap-2 text-sm text-teal-ink/70">
+            <span class="w-1.5 h-1.5 rounded-full bg-coral"></span>ラック写真を毎回撮影
+          </div>
+          <div class="flex items-center gap-2 text-sm text-teal-ink/70">
+            <span class="w-1.5 h-1.5 rounded-full bg-coral"></span>先方担当者名を記録
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. データ提案 -->
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="flex items-start gap-4 mb-6">
+          <div class="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center flex-shrink-0">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold tracking-widest text-gold mb-1">03 / INSIGHT</div>
+            <h3 class="display-jp text-xl text-teal-ink">配布データから、<br>次の一手を提案</h3>
+          </div>
+        </div>
+        <p class="text-teal-ink/70 leading-relaxed mb-6">
+          毎月、配布状況のレポートをお届け。「ここ反応薄いです」「最近このエリア観光客増えてます」配ったら終わりの業者との違いを、体感してください。
+        </p>
+        <div class="bg-sand rounded-xl p-4 mt-6 border border-gold/30">
+          <div class="text-xs font-bold text-teal-deep mb-2">📊 月次レポート例</div>
+          <div class="text-xs text-teal-ink/70 leading-relaxed">
+            「那覇エリアは消化率92%。読谷方面は補充が必要です。次月は中部の道の駅を増やす提案を…」
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ソリューション画像 -->
+    <div class="mt-20 reveal">
+      <div class="bg-white rounded-3xl p-8 lg:p-12 shadow-xl border border-teal-ink/5">
+        <div class="text-center mb-8">
+          <div class="text-xs font-bold tracking-widest text-teal mb-3">SYSTEM PREVIEW</div>
+          <h3 class="display-jp text-2xl md:text-3xl text-teal-ink">実際のシステム画面</h3>
+        </div>
+        <img src="./images/solution.png" alt="ポスマネのシステム画面：276施設マップ、ダッシュボード、月次レポート" class="w-full rounded-2xl">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== WHY POSMANE ============== -->
+<section id="why" class="py-24 lg:py-32 bg-white">
+  <div class="max-w-6xl mx-auto px-6 lg:px-12">
+
+    <div class="text-center mb-20 reveal">
+      <span class="section-tag">WHY POSMANE</span>
+      <h2 class="display-jp text-3xl md:text-5xl text-teal-ink mt-6 mb-6">
+        なぜ、ポスマネが<br class="md:hidden">選ばれているのか。
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 lg:gap-12 mb-20">
+
+      <div class="reveal flex gap-6">
+        <div class="diff-num">1</div>
+        <div>
+          <h3 class="display-jp text-xl md:text-2xl text-teal-ink mb-3">沖縄を熟知した、地元のプロ</h3>
+          <p class="text-teal-ink/70 leading-relaxed">
+            配布業者ではなく、沖縄観光の流通網を運営する事業者。地元のホテル・観光施設との関係性を活かした配布が可能です。
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-1 flex gap-6">
+        <div class="diff-num">2</div>
+        <div>
+          <h3 class="display-jp text-xl md:text-2xl text-teal-ink mb-3">業界唯一の完全可視化</h3>
+          <p class="text-teal-ink/70 leading-relaxed">
+            配布記録をシステムで管理する業者は、沖縄ではほぼいません。GPS・写真・記録の3点セットで、「やってる感」を「事実」に変えます。
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2 flex gap-6">
+        <div class="diff-num">3</div>
+        <div>
+          <h3 class="display-jp text-xl md:text-2xl text-teal-ink mb-3">攻めの配布データ提案</h3>
+          <p class="text-teal-ink/70 leading-relaxed">
+            "配って終わり"ではなく、"次にどう動くか"まで提案します。蓄積データを使って、次のシーズンに勝つための示唆を毎月お届け。
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-3 flex gap-6">
+        <div class="diff-num">4</div>
+        <div>
+          <h3 class="display-jp text-xl md:text-2xl text-teal-ink mb-3">DMM水族館の継続採用実績</h3>
+          <p class="text-teal-ink/70 leading-relaxed">
+            沖縄を代表する観光施設に継続して選ばれている事実。実績ある運用体制を、そのままご利用いただけます。
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 数字で見るポスマネ -->
+    <div class="bg-gradient-to-br from-teal-ink to-teal-dark rounded-3xl p-10 lg:p-16 text-white relative overflow-hidden reveal">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-coral/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-teal/20 rounded-full blur-3xl"></div>
+
+      <div class="relative">
+        <div class="text-center mb-12">
+          <div class="text-xs font-bold tracking-widest text-gold mb-3">BY THE NUMBERS</div>
+          <h3 class="display-jp text-2xl md:text-4xl">数字でわかるポスマネ</h3>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="num-hero text-5xl md:text-6xl text-coral mb-2">276</div>
+            <div class="text-sm text-white/70">配布施設</div>
+          </div>
+          <div class="text-center">
+            <div class="num-hero text-5xl md:text-6xl text-gold mb-2">5</div>
+            <div class="text-sm text-white/70">対応エリア</div>
+          </div>
+          <div class="text-center">
+            <div class="num-hero text-5xl md:text-6xl text-coral mb-2">25</div>
+            <div class="text-sm text-white/70">最大施設/日</div>
+          </div>
+          <div class="text-center">
+            <div class="num-hero text-5xl md:text-6xl text-gold mb-2">21<span class="text-2xl">日</span></div>
+            <div class="text-sm text-white/70">巡回周期</div>
+          </div>
+        </div>
+
+        <div class="text-center mt-10 pt-8 border-t border-white/20">
+          <p class="text-white/70 text-sm">
+            ※ 配布ルート・交通状況により変動します
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== SYSTEM SHOWCASE ============== -->
+<section id="system" class="py-24 lg:py-32 bg-ocean-fade">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div class="text-center mb-16 reveal">
+      <span class="section-tag">SYSTEM</span>
+      <h2 class="display-jp text-3xl md:text-5xl text-teal-ink mt-6 mb-6">
+        全部、<span class="text-teal">画面で</span>見えます。
+      </h2>
+      <p class="text-teal-ink/60 max-w-2xl mx-auto">
+        専用ダッシュボードで、配布状況をリアルタイムに。<br class="hidden md:block">
+        スマホからでもPCからでも、24時間アクセス可能。
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
+      <div class="reveal order-2 lg:order-1">
+        <div class="text-xs font-bold tracking-widest text-coral mb-3">DASHBOARD</div>
+        <h3 class="display-jp text-2xl md:text-3xl text-teal-ink mb-6">
+          配布の"いま"が、<br>一目でわかる。
+        </h3>
+        <div class="space-y-4 text-teal-ink/75 leading-relaxed">
+          <div class="flex gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-coral mt-2.5 flex-shrink-0"></div>
+            <p>本日の配布数・配布完了率を即時表示</p>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-coral mt-2.5 flex-shrink-0"></div>
+            <p>配布状況マップで地理的分布を把握</p>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-coral mt-2.5 flex-shrink-0"></div>
+            <p>直近の配布記録を写真付きで確認</p>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-coral mt-2.5 flex-shrink-0"></div>
+            <p>月次レポートを自動生成・PDF出力</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2 order-1 lg:order-2">
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-br from-teal/10 to-coral/10 rounded-3xl blur-2xl"></div>
+          <img src="./images/differentiation.png" alt="ポスマネのダッシュボード画面" class="relative w-full rounded-2xl shadow-xl">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== PRICING ============== -->
+<section id="pricing" class="py-24 lg:py-32 bg-white">
+  <div class="max-w-5xl mx-auto px-6 lg:px-12">
+
+    <div class="text-center mb-16 reveal">
+      <span class="section-tag">PRICING</span>
+      <h2 class="display-jp text-3xl md:text-5xl text-teal-ink mt-6 mb-6">
+        まず、1日だけ、<br class="md:hidden">
+        <span class="text-teal">ポスマネを試してみませんか？</span>
+      </h2>
+      <div class="space-y-2 text-teal-ink/65 max-w-2xl mx-auto">
+        <p>試して気に入ったら、続けてください。</p>
+        <p>気に入らなかったら、それで終わりです。</p>
+        <p class="font-bold text-teal-deep">契約期間も、初期費用も、ありません。</p>
+      </div>
+    </div>
+
+    <!-- 料金カード -->
+    <div class="bg-gradient-to-br from-sand to-cream rounded-3xl p-8 md:p-12 lg:p-16 border-2 border-teal/10 shadow-xl relative overflow-hidden reveal">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-coral/5 rounded-full blur-3xl"></div>
+
+      <div class="relative">
+        <div class="flex justify-center mb-6">
+          <div class="bg-teal-deep text-white text-sm font-bold px-6 py-2 rounded-full">
+            1日プラン
+          </div>
+        </div>
+
+        <div class="text-center mb-8">
+          <div class="flex items-baseline justify-center gap-2 mb-3">
+            <span class="text-2xl md:text-3xl font-bold text-teal-ink">¥</span>
+            <span class="num-hero text-6xl md:text-7xl text-coral">16,000</span>
+            <span class="text-xl md:text-2xl font-bold text-teal-ink">〜</span>
+            <span class="text-base text-teal-ink/60 ml-2">/ 1日</span>
+          </div>
+          <div class="inline-block bg-gold/20 border border-gold/40 text-teal-ink text-sm font-bold px-5 py-2 rounded-full">
+            パンフ2種類まで配布可能
+          </div>
+        </div>
+
+        <div class="max-w-2xl mx-auto space-y-3 mb-10 pt-8 border-t border-teal-ink/10">
+          <div class="flex items-start gap-3 py-2">
+            <div class="text-coral mt-1">▶</div>
+            <div class="flex-1 text-teal-ink/80">1日10〜15施設の巡回（最大25施設）</div>
+          </div>
+          <div class="flex items-start gap-3 py-2 border-t border-dashed border-teal-ink/10">
+            <div class="text-coral mt-1">▶</div>
+            <div class="flex-1 text-teal-ink/80">写真付き完全レポート翌日納品</div>
+          </div>
+          <div class="flex items-start gap-3 py-2 border-t border-dashed border-teal-ink/10">
+            <div class="text-coral mt-1">▶</div>
+            <div class="flex-1 text-teal-ink/80">ダッシュボードで配布状況リアルタイム確認</div>
+          </div>
+          <div class="flex items-start gap-3 py-2 border-t border-dashed border-teal-ink/10">
+            <div class="text-coral mt-1">▶</div>
+            <div class="flex-1 text-teal-ink/80">オプション：1種追加 +¥3,000</div>
+          </div>
+          <div class="flex items-start gap-3 py-2 border-t border-dashed border-teal-ink/10">
+            <div class="text-coral mt-1">▶</div>
+            <div class="flex-1 text-teal-ink/80">燃料費・諸経費は実費精算</div>
+          </div>
+        </div>
+
+        <div class="bg-white/60 rounded-xl p-5 mb-8 text-sm text-teal-ink/70 space-y-1.5">
+          <p>※ 万一の事故・トラブルは弊社負担</p>
+          <p>※ 担当者は全員、報告義務を徹底</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#contact" class="btn-primary justify-center">
+            1日プランで試す
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="btn-secondary justify-center">資料請求</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== PROCESS ============== -->
+<section class="py-24 lg:py-32 bg-ocean-fade">
+  <div class="max-w-5xl mx-auto px-6 lg:px-12">
+
+    <div class="text-center mb-16 reveal">
+      <span class="section-tag">PROCESS</span>
+      <h2 class="display-jp text-3xl md:text-5xl text-teal-ink mt-6 mb-6">
+        ご利用の流れ
+      </h2>
+      <p class="text-teal-ink/60">お問い合わせから配布開始まで、最短2週間。</p>
+    </div>
+
+    <div class="relative">
+      <!-- 縦線 -->
+      <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-teal/20 transform -translate-x-1/2"></div>
+
+      <div class="space-y-8 md:space-y-12">
+
+        <div class="reveal md:grid md:grid-cols-2 md:gap-12 md:items-center">
+          <div class="md:text-right md:pr-12">
+            <div class="text-xs font-bold tracking-widest text-coral mb-2">STEP 01</div>
+            <h3 class="display-jp text-xl text-teal-ink mb-2">お問い合わせ</h3>
+            <p class="text-teal-ink/65 text-sm">フォーム・電話・LINEから、お気軽にご相談ください。</p>
+          </div>
+          <div class="hidden md:flex md:items-center md:justify-start md:pl-12 relative">
+            <div class="absolute left-1/2 top-1/2 w-10 h-10 rounded-full bg-coral text-white font-bold flex items-center justify-center transform -translate-x-1/2 -translate-y-1/2 shadow-lg">1</div>
+          </div>
+        </div>
+
+        <div class="reveal md:grid md:grid-cols-2 md:gap-12 md:items-center">
+          <div class="hidden md:flex md:items-center md:justify-end md:pr-12 relative">
+            <div class="absolute left-1/2 top-1/2 w-10 h-10 rounded-full bg-coral text-white font-bold flex items-center justify-center transform -translate-x-1/2 -translate-y-1/2 shadow-lg">2</div>
+          </div>
+          <div class="md:pl-12">
+            <div class="text-xs font-bold tracking-widest text-coral mb-2">STEP 02</div>
+            <h3 class="display-jp text-xl text-teal-ink mb-2">ヒアリング（30分）</h3>
+            <p class="text-teal-ink/65 text-sm">配布したいパンフ、ターゲット、目標を伺います。オンラインも対応。</p>
+          </div>
+        </div>
+
+        <div class="reveal md:grid md:grid-cols-2 md:gap-12 md:items-center">
+          <div class="md:text-right md:pr-12">
+            <div class="text-xs font-bold tracking-widest text-coral mb-2">STEP 03</div>
+            <h3 class="display-jp text-xl text-teal-ink mb-2">配布計画立案</h3>
+            <p class="text-teal-ink/65 text-sm">弊社で配布ルート・施設選定を作成。配布許諾の取得も代行。</p>
+          </div>
+          <div class="hidden md:flex md:items-center md:justify-start md:pl-12 relative">
+            <div class="absolute left-1/2 top-1/2 w-10 h-10 rounded-full bg-coral text-white font-bold flex items-center justify-center transform -translate-x-1/2 -translate-y-1/2 shadow-lg">3</div>
+          </div>
+        </div>
+
+        <div class="reveal md:grid md:grid-cols-2 md:gap-12 md:items-center">
+          <div class="hidden md:flex md:items-center md:justify-end md:pr-12 relative">
+            <div class="absolute left-1/2 top-1/2 w-10 h-10 rounded-full bg-coral text-white font-bold flex items-center justify-center transform -translate-x-1/2 -translate-y-1/2 shadow-lg">4</div>
+          </div>
+          <div class="md:pl-12">
+            <div class="text-xs font-bold tracking-widest text-coral mb-2">STEP 04</div>
+            <h3 class="display-jp text-xl text-teal-ink mb-2">配布スタート</h3>
+            <p class="text-teal-ink/65 text-sm">翌月から配布開始。ダッシュボードでリアルタイムに確認できます。</p>
+          </div>
+        </div>
+
+        <div class="reveal md:grid md:grid-cols-2 md:gap-12 md:items-center">
+          <div class="md:text-right md:pr-12">
+            <div class="text-xs font-bold tracking-widest text-coral mb-2">STEP 05</div>
+            <h3 class="display-jp text-xl text-teal-ink mb-2">月次レポート</h3>
+            <p class="text-teal-ink/65 text-sm">月末に配布データを分析、次月の打ち手をご提案します。</p>
+          </div>
+          <div class="hidden md:flex md:items-center md:justify-start md:pl-12 relative">
+            <div class="absolute left-1/2 top-1/2 w-10 h-10 rounded-full bg-teal-deep text-white font-bold flex items-center justify-center transform -translate-x-1/2 -translate-y-1/2 shadow-lg">5</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== FAQ ============== -->
+<section id="faq" class="py-24 lg:py-32 bg-white">
+  <div class="max-w-3xl mx-auto px-6 lg:px-12">
+
+    <div class="text-center mb-16 reveal">
+      <span class="section-tag">FAQ</span>
+      <h2 class="display-jp text-3xl md:text-5xl text-teal-ink mt-6 mb-6">
+        よくあるご質問
+      </h2>
+    </div>
+
+    <div class="reveal">
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>パンフは何枚から配布できますか？</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-content">
+          <div class="faq-content-inner">
+            最小ロットの指定はありません。配布施設数によって必要枚数の目安をお伝えしますので、お気軽にご相談ください。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>どんな施設に配布できますか？</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-content">
+          <div class="faq-content-inner">
+            沖縄本島276施設の流通ネットワークを保有しています。ホテル・レンタカー・道の駅・観光地・空港・体験施設など、観光客が利用する施設を幅広くカバーしています。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>配布日数は選べますか？</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-content">
+          <div class="faq-content-inner">
+            1日から自由にお選びいただけます。月10〜20日稼働の運用も多いです。繁忙期前の集中投入など、ご要望に合わせて柔軟に設計します。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>配布許諾は誰が取りますか？</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-content">
+          <div class="faq-content-inner">
+            弊社で代行いたします。空港・道の駅などの公的施設も含め、配布許諾営業は全てポスマネ側で対応します。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>何種類のパンフを同時配布できますか？</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-content">
+          <div class="faq-content-inner">
+            ベーシックプランで2種類まで対応。1種追加につき +¥3,000 / 日でオプション追加が可能です。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>写真や報告書はどうやって見られますか？</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-content">
+          <div class="faq-content-inner">
+            専用ダッシュボード（Webブラウザ）から24時間アクセス可能です。スマホ・タブレット・PC全対応。配布写真・GPS位置・担当者名まで全て確認できます。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>1日から試したい場合はどうすれば？</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-content">
+          <div class="faq-content-inner">
+            お問い合わせフォームから「1日プランで試したい」を選択してご連絡ください。初期費用・契約縛りなしで、¥16,000〜お試しいただけます。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>解約はいつでもできますか？</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-content">
+          <div class="faq-content-inner">
+            はい、契約期間の縛りはありません。ご利用月単位でのご精算となるため、いつでも終了いただけます。
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== CONTACT ============== -->
+<section id="contact" class="py-24 lg:py-32 bg-ocean-deep relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-96 h-96 bg-coral/10 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl"></div>
+
+  <div class="relative max-w-5xl mx-auto px-6 lg:px-12">
+
+    <div class="text-center mb-12 reveal">
+      <div class="inline-block text-xs font-bold tracking-widest text-gold mb-4">CONTACT</div>
+      <h2 class="display-jp text-3xl md:text-5xl text-white mb-6">
+        "配ったあと"から始まる、<br>
+        <span class="text-gold">本当の営業活動を。</span>
+      </h2>
+      <p class="text-white/70 max-w-2xl mx-auto">
+        観光客の手に、確実に届くまで。<br>
+        ポスマネは、配布を流通に変えます。
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-8 reveal">
+
+      <!-- フォーム -->
+      <div class="lg:col-span-3 bg-white rounded-2xl p-8 md:p-10 shadow-2xl">
+        <h3 class="display-jp text-xl text-teal-ink mb-6">お問い合わせフォーム</h3>
+        <form onsubmit="handleSubmit(event)" class="space-y-5">
+          <div>
+            <label class="form-label">会社名<span class="form-required">*</span></label>
+            <input type="text" required class="form-input" placeholder="株式会社○○">
+          </div>
+          <div class="grid md:grid-cols-2 gap-5">
+            <div>
+              <label class="form-label">ご担当者名<span class="form-required">*</span></label>
+              <input type="text" required class="form-input" placeholder="山田 太郎">
+            </div>
+            <div>
+              <label class="form-label">電話番号</label>
+              <input type="tel" class="form-input" placeholder="098-000-0000">
+            </div>
+          </div>
+          <div>
+            <label class="form-label">メールアドレス<span class="form-required">*</span></label>
+            <input type="email" required class="form-input" placeholder="example@company.com">
+          </div>
+          <div>
+            <label class="form-label">ご相談内容<span class="form-required">*</span></label>
+            <select required class="form-input">
+              <option value="">選択してください</option>
+              <option>1日プランで試したい</option>
+              <option>月額契約を相談したい</option>
+              <option>サービス内容を詳しく聞きたい</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">自由記入欄</label>
+            <textarea rows="4" class="form-input" placeholder="ご質問・ご要望をご記入ください"></textarea>
+          </div>
+          <button type="submit" class="btn-primary w-full justify-center mt-6">
+            送信する
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- 連絡先情報 -->
+      <div class="lg:col-span-2 space-y-6">
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
+          <div class="text-xs font-bold tracking-widest text-gold mb-3">PHONE</div>
+          <div class="num-hero text-2xl text-white mb-1">098-XXX-XXXX</div>
+          <p class="text-white/60 text-sm">平日 9:00-18:00</p>
+        </div>
+
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
+          <div class="text-xs font-bold tracking-widest text-gold mb-3">EMAIL</div>
+          <p class="text-white text-base mb-1">info@posmane.jp</p>
+          <p class="text-white/60 text-sm">24時間受付</p>
+        </div>
+
+        <div class="bg-coral rounded-2xl p-6">
+          <div class="text-xs font-bold tracking-widest text-white/80 mb-3">POINT</div>
+          <p class="text-white font-bold text-lg leading-relaxed">
+            まず1日だけ、<br>試してみませんか？
+          </p>
+          <p class="text-white/90 text-sm mt-2">
+            初期費用なし・契約縛りなし。<br>
+            気軽にお問い合わせください。
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="bg-teal-ink text-white pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div class="grid md:grid-cols-3 gap-8 lg:gap-16 mb-12">
+
+      <div>
+        <img src="./images/logo.png" alt="ポスマネ" class="h-16 mb-4 w-auto">
+        <p class="text-white/70 text-sm leading-relaxed">
+          沖縄本島276施設の<br>
+          パンフレット流通管理サービス
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-gold text-xs tracking-widest mb-4">運営会社</h4>
+        <div class="space-y-2 text-sm text-white/80">
+          <p class="font-bold text-white">株式会社TENOHIRA</p>
+          <p>沖縄県</p>
+          <p>事業内容：パンフレット流通管理 / 観光業向けデータサービス</p>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-gold text-xs tracking-widest mb-4">メニュー</h4>
+        <div class="space-y-2 text-sm">
+          <a href="#problem" class="block text-white/80 hover:text-coral transition">課題</a>
+          <a href="#solution" class="block text-white/80 hover:text-coral transition">解決策</a>
+          <a href="#system" class="block text-white/80 hover:text-coral transition">システム</a>
+          <a href="#pricing" class="block text-white/80 hover:text-coral transition">料金</a>
+          <a href="#faq" class="block text-white/80 hover:text-coral transition">よくある質問</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/50">
+      <p>© 2025 株式会社TENOHIRA. All Rights Reserved.</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-white transition">プライバシーポリシー</a>
+        <a href="#" class="hover:text-white transition">利用規約</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ============== SCRIPTS ============== -->
+<script>
+  // メガコピー：画面に入ったらスライドイン再生
+  const megaCopy = document.getElementById('megaCopy');
+  if (megaCopy) {
+    const megaObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          megaCopy.classList.add('is-animating');
+          megaObserver.unobserve(megaCopy);
+        }
+      });
+    }, { threshold: 0.2 });
+    megaObserver.observe(megaCopy);
+  }
+
+  // スクロールリビール
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // FAQトグル
+  function toggleFaq(trigger) {
+    const item = trigger.parentElement;
+    const content = item.querySelector('.faq-content');
+    const isOpen = item.classList.contains('open');
+
+    // 全て閉じる
+    document.querySelectorAll('.faq-item').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.faq-content').style.maxHeight = null;
+    });
+
+    // 該当だけ開く
+    if (!isOpen) {
+      item.classList.add('open');
+      content.style.maxHeight = content.scrollHeight + 'px';
+    }
+  }
+
+  // フォーム送信（仮）
+  function handleSubmit(event) {
+    event.preventDefault();
+    alert('お問い合わせありがとうございます。\n（送信先メールの設定をお願いします）');
+  }
+</script>
+
+</body>
+</html>
