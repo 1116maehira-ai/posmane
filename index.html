@@ -391,16 +391,16 @@
     50% { opacity: 0.5; transform: scale(1.2); }
   }
 
-  /* === 右上：脇役のロゴ＋誕生コピー === */
+  /* === 左上：脇役のロゴ＋誕生コピー（キャラを避けて左に配置） === */
   .birth-side {
     position: absolute;
     top: 4%;
-    right: 3%;
+    left: 3%;
     z-index: 5;
-    text-align: right;
-    max-width: 340px;
+    text-align: left;
+    max-width: 320px;
     padding: 18px 22px;
-    background: rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0.82);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 18px;
@@ -423,13 +423,12 @@
     height: 48px;
     width: auto;
     margin-bottom: 10px;
-    margin-left: auto;
     filter: drop-shadow(0 4px 12px rgba(8, 51, 68, 0.15));
   }
   .birth-tagline {
     font-family: 'Noto Serif JP', serif;
     font-weight: 900;
-    font-size: clamp(24px, 3vw, 38px);
+    font-size: clamp(22px, 2.6vw, 34px);
     line-height: 1.1;
     color: #083344;
     letter-spacing: -0.02em;
@@ -441,22 +440,6 @@
     color: #0891b2;
     letter-spacing: 0.15em;
     margin-top: 6px;
-  }
-  .birth-breadcrumb {
-    margin-top: 10px;
-    font-family: 'Inter', sans-serif;
-    font-size: 9px;
-    color: rgba(8, 51, 68, 0.5);
-    letter-spacing: 0.1em;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    justify-content: flex-end;
-  }
-  .birth-breadcrumb::before {
-    content: '⌂';
-    color: #0891b2;
-    font-size: 11px;
   }
 
   /* === 吹き出し === */
@@ -487,10 +470,10 @@
   .bubble-pink { background: #ec4899; }
   .bubble-purple { background: #8b5cf6; }
 
-  /* MONBRAN流の配置：キャラの周囲に散らす */
-  .bubble-1 {  /* 左上：わたしたち */
-    top: 14%;
-    left: 12%;
+  /* 16:9に最適化された吹き出し配置（キャラを避けて画面端寄り） */
+  .bubble-1 {  /* 左上寄り：わたしたち（birth-sideの右隣に） */
+    top: 8%;
+    left: 32%;
     animation: bubbleBob 4s ease-in-out infinite;
   }
   .bubble-1::after {
@@ -498,9 +481,9 @@
     border-width: 8px 8px 0 0;
     border-color: #0891b2 transparent transparent transparent;
   }
-  .bubble-2 {  /* 上中央寄り：配布、変えます！ */
-    top: 8%;
-    left: 42%;
+  .bubble-2 {  /* 上中央：配布、変えます！ */
+    top: 6%;
+    left: 48%;
     animation: bubbleBob 4.5s ease-in-out infinite 0.5s;
   }
   .bubble-2::after {
@@ -508,9 +491,9 @@
     border-width: 8px 0 0 8px;
     border-color: #f97316 transparent transparent transparent;
   }
-  .bubble-3 {  /* 中央左：キャラのセリフ */
-    top: 48%;
-    left: 22%;
+  .bubble-3 {  /* 中央下寄り：集客チャンス */
+    bottom: 18%;
+    left: 38%;
     animation: bubbleBob 5s ease-in-out infinite 1s;
   }
   .bubble-3::after {
@@ -518,9 +501,9 @@
     border-width: 8px 8px 0 0;
     border-color: #fbbf24 transparent transparent transparent;
   }
-  .bubble-4 {  /* 中央右：キャラのセリフ */
-    top: 40%;
-    right: 16%;
+  .bubble-4 {  /* 右中央：配布、可視化！ */
+    top: 38%;
+    right: 6%;
     animation: bubbleBob 4.2s ease-in-out infinite 1.5s;
   }
   .bubble-4::after {
@@ -528,9 +511,9 @@
     border-width: 8px 0 0 8px;
     border-color: #ec4899 transparent transparent transparent;
   }
-  .bubble-5 {  /* 右下：パンチライン */
-    top: 62%;
-    right: 6%;
+  .bubble-5 {  /* 右下：DMM水族館 採用実績 */
+    bottom: 12%;
+    right: 8%;
     animation: bubbleBob 4.8s ease-in-out infinite 0.3s;
   }
   .bubble-5::after {
@@ -580,13 +563,17 @@
     to { transform: rotate(360deg); }
   }
 
-  /* === 下部ステージ：ぶち抜き斜めゴシック === */
+  /* === 下部ステージ：ぶち抜き斜めゴシック（独立セクション） === */
   .mega-stage {
     position: relative;
     width: 100%;
-    padding: 0 0 80px;
+    padding: 80px 0 80px;
     overflow: hidden;
     z-index: 3;
+    background:
+      radial-gradient(ellipse at top right, rgba(8, 145, 178, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(249, 115, 22, 0.06) 0%, transparent 50%),
+      linear-gradient(180deg, #fefcf7 0%, #f0fbff 100%);
   }
   .mega-copy {
     font-family: 'Noto Sans JP', sans-serif;
@@ -793,7 +780,7 @@
   </div>
 </nav>
 
-<!-- ============== HERO (フルスクリーン背景動画版) ============== -->
+<!-- ============== HERO (フルスクリーン背景動画版・16:9) ============== -->
 <section id="top" class="hero-stage">
 
   <!-- 背景動画（main video） -->
@@ -808,7 +795,7 @@
     <span>Scroll Down ・ Scroll Down ・ Scroll Down</span>
   </div>
 
-  <!-- ============ キャンバスエリア ============ -->
+  <!-- ============ キャンバスエリア（ヒーロー内の最小限要素のみ） ============ -->
   <div class="hero-canvas">
 
     <!-- 浮かぶ装飾 -->
@@ -818,14 +805,14 @@
     <div class="floating-deco deco-circle"></div>
     <div class="floating-deco deco-triangle"></div>
 
-    <!-- 吹き出し装飾（キャラがしゃべってる空間） -->
+    <!-- 吹き出し装飾（キャラの周囲に配置・16:9最適化） -->
     <div class="speech-bubble bubble-teal bubble-1">わたしたち</div>
     <div class="speech-bubble bubble-coral bubble-2">配布、変えます！</div>
     <div class="speech-bubble bubble-gold bubble-3">集客チャンス逃さない！</div>
     <div class="speech-bubble bubble-pink bubble-4">配布、可視化！</div>
     <div class="speech-bubble bubble-purple bubble-5">DMM水族館 採用実績</div>
 
-    <!-- 右上：脇役のロゴ＋誕生コピー -->
+    <!-- 左上：ロゴ＋誕生コピー（キャラを避けて左に） -->
     <div class="birth-side">
       <div class="birth-ribbon">
         <span class="mr-1">✦</span> 沖縄観光のパンフ流通サービス <span class="ml-1">✦</span>
@@ -837,74 +824,66 @@
         爆誕、<br>しました。
       </h1>
       <div class="birth-tagline-en">POSTING MANAGER for OKINAWA</div>
-      <div class="birth-breadcrumb">
-        <span>トップ</span>
-        <span>・・・・・</span>
-        <span>ポスマネについて</span>
-      </div>
     </div>
-
-    <!-- 中央：動画背景の主役空間（空きエリア） -->
-    <div class="hero-main-stage"></div>
 
     <!-- 動画再生中インジケーター -->
     <div class="video-indicator">LIVE ・ ON AIR</div>
 
   </div>
 
-  <!-- ============ 下部ステージ：ぶち抜き斜めゴシック ============ -->
-  <div class="mega-stage">
+</section>
 
-    <!-- 手前に飛び出すサブキャラ要素（ロゴアイコンを使う） -->
-    <div class="mega-overlay-char">
-      <img src="./images/logo.png" alt="">
+<!-- ============== MEGA COPY ぶち抜き斜めゴシック ============== -->
+<section class="mega-stage">
+
+  <!-- 手前に飛び出すサブキャラ要素 -->
+  <div class="mega-overlay-char">
+    <img src="./images/logo.png" alt="">
+  </div>
+
+  <!-- 右下のサブ英文 -->
+  <div class="mega-side-en">WE DELIVER OKINAWA!</div>
+
+  <!-- ぶち抜き斜めゴシック -->
+  <div class="mega-copy" id="megaCopy">配ってまいりまーす！</div>
+
+  <!-- サブテキスト + CTA + メトリクス -->
+  <div class="max-w-3xl mx-auto mega-sub">
+    <p class="text-lg md:text-xl font-bold text-teal-ink mb-2">
+      観光客は、置いてないパンフまでは見てくれません。
+    </p>
+    <p>機会損失をゼロにする、流通管理システム。</p>
+    <p class="text-teal-deep font-bold">来場までの、最後のヒトオシ。</p>
+
+    <div class="hero-cta-row">
+      <a href="#contact" class="btn-primary">
+        1日¥16,000〜でお試し
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#pricing" class="btn-secondary">
+        料金を見る
+      </a>
     </div>
 
-    <!-- 右下のサブ英文 -->
-    <div class="mega-side-en">WE DELIVER OKINAWA!</div>
-
-    <!-- ぶち抜き斜めゴシック -->
-    <div class="mega-copy" id="megaCopy">配ってまいりまーす！</div>
-
-    <!-- サブテキスト -->
-    <div class="max-w-3xl mx-auto mega-sub">
-      <p class="text-lg md:text-xl font-bold text-teal-ink mb-2">
-        観光客は、置いてないパンフまでは見てくれません。
-      </p>
-      <p>機会損失をゼロにする、流通管理システム。</p>
-      <p class="text-teal-deep font-bold">来場までの、最後のヒトオシ。</p>
-
-      <div class="hero-cta-row">
-        <a href="#contact" class="btn-primary">
-          1日¥16,000〜でお試し
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#pricing" class="btn-secondary">
-          料金を見る
-        </a>
+    <!-- ミニメトリクス -->
+    <div class="flex flex-wrap justify-center gap-8 md:gap-12 mt-10 pt-8 border-t border-teal-ink/10">
+      <div class="text-center">
+        <div class="num-hero text-3xl md:text-4xl text-teal-deep">276</div>
+        <div class="text-xs text-teal-ink/60 mt-1">配布施設</div>
       </div>
-
-      <!-- ミニメトリクス -->
-      <div class="flex flex-wrap justify-center gap-8 md:gap-12 mt-10 pt-8 border-t border-teal-ink/10">
-        <div class="text-center">
-          <div class="num-hero text-3xl md:text-4xl text-teal-deep">276</div>
-          <div class="text-xs text-teal-ink/60 mt-1">配布施設</div>
-        </div>
-        <div class="text-center">
-          <div class="num-hero text-3xl md:text-4xl text-teal-deep">5</div>
-          <div class="text-xs text-teal-ink/60 mt-1">対応エリア</div>
-        </div>
-        <div class="text-center">
-          <div class="num-hero text-3xl md:text-4xl text-teal-deep">25<span class="text-base">/日</span></div>
-          <div class="text-xs text-teal-ink/60 mt-1">最大巡回数</div>
-        </div>
-        <div class="text-center">
-          <div class="num-hero text-3xl md:text-4xl text-coral">¥16,000<span class="text-base">〜</span></div>
-          <div class="text-xs text-teal-ink/60 mt-1">1日プラン</div>
-        </div>
+      <div class="text-center">
+        <div class="num-hero text-3xl md:text-4xl text-teal-deep">5</div>
+        <div class="text-xs text-teal-ink/60 mt-1">対応エリア</div>
+      </div>
+      <div class="text-center">
+        <div class="num-hero text-3xl md:text-4xl text-teal-deep">25<span class="text-base">/日</span></div>
+        <div class="text-xs text-teal-ink/60 mt-1">最大巡回数</div>
+      </div>
+      <div class="text-center">
+        <div class="num-hero text-3xl md:text-4xl text-coral">¥16,000<span class="text-base">〜</span></div>
+        <div class="text-xs text-teal-ink/60 mt-1">1日プラン</div>
       </div>
     </div>
-
   </div>
 
 </section>
