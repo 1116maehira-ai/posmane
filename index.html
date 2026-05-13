@@ -129,6 +129,50 @@
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
 
+  /* === ヘッダーCTAボタン（脈動グラデ） === */
+  .header-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    font-size: 14px;
+    color: white;
+    background: linear-gradient(135deg, #f97316 0%, #fbbf24 50%, #f97316 100%);
+    background-size: 200% 200%;
+    box-shadow: 0 4px 16px rgba(249, 115, 22, 0.4);
+    transition: all 0.3s ease;
+    animation: ctaPulse 1.5s ease-in-out infinite, ctaGradient 3s linear infinite;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-cta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.6);
+    animation-play-state: paused;
+  }
+  @keyframes ctaPulse {
+    0%, 100% {
+      box-shadow: 0 4px 16px rgba(249, 115, 22, 0.4), 0 0 0 0 rgba(249, 115, 22, 0.6);
+    }
+    50% {
+      box-shadow: 0 6px 24px rgba(249, 115, 22, 0.6), 0 0 0 8px rgba(249, 115, 22, 0);
+    }
+  }
+  @keyframes ctaGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @media (max-width: 768px) {
+    .header-cta {
+      padding: 10px 18px;
+      font-size: 13px;
+    }
+  }
+
   /* === CTAボタン === */
   .btn-primary {
     background: #f97316;
@@ -779,8 +823,9 @@
       <a href="#split" class="nav-link">割り勘</a>
       <a href="#faq" class="nav-link">FAQ</a>
     </div>
-    <a href="#contact" class="bg-coral text-white text-sm font-bold px-5 py-2.5 rounded-full hover:bg-orange-600 transition">
-      1日プランで試す
+    <a href="#contact" class="header-cta">
+      <span class="header-cta-text">1日プランで試す</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
     </a>
   </div>
 </nav>
@@ -1720,93 +1765,119 @@
 </section>
 
 <!-- ============== CONTACT ============== -->
-<section id="contact" class="py-24 lg:py-32 bg-ocean-deep relative overflow-hidden">
-  <div class="absolute top-0 right-0 w-96 h-96 bg-coral/10 rounded-full blur-3xl"></div>
-  <div class="absolute bottom-0 left-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl"></div>
+<section id="contact" class="py-24 lg:py-32 relative overflow-hidden" style="background: linear-gradient(135deg, #fbbf24 0%, #f97316 50%, #fbbf24 100%);">
 
-  <div class="relative max-w-5xl mx-auto px-6 lg:px-12">
+  <!-- 控えめな装飾光球 -->
+  <div class="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl opacity-30 pointer-events-none" style="background: #fef08a;"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-25 pointer-events-none" style="background: #fef3c7;"></div>
 
-    <div class="text-center mb-12 reveal">
-      <div class="inline-block text-xs font-bold tracking-widest text-gold mb-4">CONTACT</div>
-      <h2 class="display-jp text-3xl md:text-5xl text-white mb-6">
-        "配ったあと"から始まる、<br>
-        <span class="text-gold">本当の営業活動を。</span>
+  <!-- 棚のマネ君（右下に配置・控えめ） -->
+  <div class="hidden lg:block absolute -bottom-4 right-4 xl:right-12 z-10 pointer-events-none" style="animation: shelfFloat 4s ease-in-out infinite;">
+    <img src="./images/mane-shelf.png" alt="" class="w-48 xl:w-56" style="filter: drop-shadow(0 16px 32px rgba(8, 51, 68, 0.2));">
+  </div>
+
+  <style>
+    @keyframes shelfFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+
+  <div class="max-w-6xl mx-auto px-6 lg:px-12 relative z-20">
+
+    <!-- 見出し -->
+    <div class="text-center mb-16 reveal">
+      <div class="text-xs font-bold tracking-widest text-white mb-4" style="text-shadow: 0 1px 2px rgba(8, 51, 68, 0.2);">CONTACT</div>
+      <h2 class="font-sans font-black text-3xl md:text-5xl text-white mb-6 tracking-tight leading-tight" style="text-shadow: 0 4px 16px rgba(8, 51, 68, 0.25);">
+        ポスマネが、ただの配布を、<br>
+        <span style="color: #083344;">"来客までの絶好の機会"</span>に変えます。
       </h2>
-      <p class="text-white/70 max-w-2xl mx-auto">
-        観光客の手に、確実に届くまで。<br>
-        ポスマネは、配布を流通に変えます。
+      <p class="text-white font-medium text-base md:text-lg" style="text-shadow: 0 2px 6px rgba(8, 51, 68, 0.2);">
+        観光客の手に、あなたの魅力が届くまで。
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-5 gap-8 reveal">
+    <div class="grid lg:grid-cols-3 gap-8 lg:gap-10 items-start">
 
-      <!-- フォーム -->
-      <div class="lg:col-span-3 bg-white rounded-2xl p-8 md:p-10 shadow-2xl">
-        <h3 class="display-jp text-xl text-teal-ink mb-6">お問い合わせフォーム</h3>
-        <form onsubmit="handleSubmit(event)" class="space-y-5">
-          <div>
-            <label class="form-label">会社名<span class="form-required">*</span></label>
-            <input type="text" required class="form-input" placeholder="株式会社○○">
-          </div>
-          <div class="grid md:grid-cols-2 gap-5">
+      <!-- 左：フォーム（2カラム分） -->
+      <div class="lg:col-span-2 reveal">
+        <div class="bg-white rounded-3xl p-8 md:p-10 shadow-2xl">
+          <h3 class="font-sans font-black text-xl md:text-2xl text-teal-ink mb-6 tracking-tight">
+            お問い合わせフォーム
+          </h3>
+
+          <!-- TODO: Formspreeに登録後、action にURLを入れてください -->
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-5">
+
             <div>
-              <label class="form-label">ご担当者名<span class="form-required">*</span></label>
-              <input type="text" required class="form-input" placeholder="山田 太郎">
+              <label class="block text-sm font-bold text-teal-ink mb-2">会社名 <span class="text-coral">*</span></label>
+              <input type="text" name="company" required placeholder="株式会社○○" class="w-full px-4 py-3 border-2 border-teal-ink/10 rounded-xl focus:border-coral focus:outline-none transition text-teal-ink">
             </div>
+
+            <div class="grid md:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-bold text-teal-ink mb-2">ご担当者名 <span class="text-coral">*</span></label>
+                <input type="text" name="name" required placeholder="山田 太郎" class="w-full px-4 py-3 border-2 border-teal-ink/10 rounded-xl focus:border-coral focus:outline-none transition text-teal-ink">
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-teal-ink mb-2">電話番号</label>
+                <input type="tel" name="phone" placeholder="098-000-0000" class="w-full px-4 py-3 border-2 border-teal-ink/10 rounded-xl focus:border-coral focus:outline-none transition text-teal-ink">
+              </div>
+            </div>
+
             <div>
-              <label class="form-label">電話番号</label>
-              <input type="tel" class="form-input" placeholder="098-000-0000">
+              <label class="block text-sm font-bold text-teal-ink mb-2">メールアドレス <span class="text-coral">*</span></label>
+              <input type="email" name="email" required placeholder="example@company.com" class="w-full px-4 py-3 border-2 border-teal-ink/10 rounded-xl focus:border-coral focus:outline-none transition text-teal-ink">
             </div>
-          </div>
-          <div>
-            <label class="form-label">メールアドレス<span class="form-required">*</span></label>
-            <input type="email" required class="form-input" placeholder="example@company.com">
-          </div>
-          <div>
-            <label class="form-label">ご相談内容<span class="form-required">*</span></label>
-            <select required class="form-input">
-              <option value="">選択してください</option>
-              <option>1日プランで試したい</option>
-              <option>月額契約を相談したい</option>
-              <option>サービス内容を詳しく聞きたい</option>
-              <option>その他</option>
-            </select>
-          </div>
-          <div>
-            <label class="form-label">自由記入欄</label>
-            <textarea rows="4" class="form-input" placeholder="ご質問・ご要望をご記入ください"></textarea>
-          </div>
-          <button type="submit" class="btn-primary w-full justify-center mt-6">
-            送信する
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </button>
-        </form>
+
+            <div>
+              <label class="block text-sm font-bold text-teal-ink mb-2">ご相談内容 <span class="text-coral">*</span></label>
+              <select name="inquiry_type" required class="w-full px-4 py-3 border-2 border-teal-ink/10 rounded-xl focus:border-coral focus:outline-none transition text-teal-ink bg-white">
+                <option value="">選択してください</option>
+                <option value="1日プラン">1日プランで試したい</option>
+                <option value="割り勘パック">割り勘パックについて</option>
+                <option value="資料請求">資料請求</option>
+                <option value="その他">その他</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-teal-ink mb-2">自由記入欄</label>
+              <textarea name="message" rows="4" placeholder="ご質問・ご要望をご記入ください" class="w-full px-4 py-3 border-2 border-teal-ink/10 rounded-xl focus:border-coral focus:outline-none transition resize-none text-teal-ink"></textarea>
+            </div>
+
+            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-black text-white text-lg shadow-xl transform transition-all hover:scale-[1.02]" style="background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%); box-shadow: 0 8px 24px rgba(249, 115, 22, 0.4);">
+              送信する
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+        </div>
       </div>
 
-      <!-- 連絡先情報 -->
-      <div class="lg:col-span-2 space-y-6">
-        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-          <div class="text-xs font-bold tracking-widest text-gold mb-3">PHONE</div>
-          <div class="num-hero text-2xl text-white mb-1">098-XXX-XXXX</div>
-          <p class="text-white/60 text-sm">平日 9:00-18:00</p>
+      <!-- 右：POINTのみ表示（PHONE / EMAIL 削除） -->
+      <div class="reveal reveal-delay-1 space-y-6">
+
+        <!-- POINT（目立たせる） -->
+        <div class="bg-white rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+          <!-- 装飾角 -->
+          <div class="absolute top-0 right-0 w-24 h-24" style="background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%); clip-path: polygon(100% 0, 100% 100%, 0 0);"></div>
+
+          <div class="relative">
+            <div class="inline-block bg-coral text-white text-xs font-black tracking-widest px-3 py-1.5 rounded-full mb-5">
+              ⭐ POINT
+            </div>
+            <h4 class="font-sans font-black text-2xl mb-4 tracking-tight leading-tight" style="color: #0ea5e9;">
+              まず1日だけ、<br>試してみませんか？
+            </h4>
+            <p class="text-teal-ink/80 text-sm leading-relaxed mb-3 font-medium">
+              <span class="font-black text-coral">初期費用なし・契約縛りなし。</span>
+            </p>
+            <p class="text-teal-ink/75 text-sm leading-relaxed">
+              気軽にお問い合わせください。
+            </p>
+          </div>
         </div>
 
-        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-          <div class="text-xs font-bold tracking-widest text-gold mb-3">EMAIL</div>
-          <p class="text-white text-base mb-1">info@posmane.jp</p>
-          <p class="text-white/60 text-sm">24時間受付</p>
-        </div>
-
-        <div class="bg-coral rounded-2xl p-6">
-          <div class="text-xs font-bold tracking-widest text-white/80 mb-3">POINT</div>
-          <p class="text-white font-bold text-lg leading-relaxed">
-            まず1日だけ、<br>試してみませんか？
-          </p>
-          <p class="text-white/90 text-sm mt-2">
-            初期費用なし・契約縛りなし。<br>
-            気軽にお問い合わせください。
-          </p>
-        </div>
       </div>
 
     </div>
@@ -1828,7 +1899,7 @@
         </p>
       </div>
 
-      <div>
+      <div style="display: none;">
         <h4 class="font-bold text-gold text-xs tracking-widest mb-4">運営会社</h4>
         <div class="space-y-2 text-sm text-white/80">
           <p class="font-bold text-white">株式会社TENOHIRA</p>
@@ -1851,8 +1922,8 @@
     </div>
 
     <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/50">
-      <p>© 2025 株式会社TENOHIRA. All Rights Reserved.</p>
-      <div class="flex gap-6">
+      <p>© 2026 運営 | 株式会社TENOHIRA. All Rights Reserved.</p>
+      <div class="flex gap-6" style="display: none;">
         <a href="#" class="hover:text-white transition">プライバシーポリシー</a>
         <a href="#" class="hover:text-white transition">利用規約</a>
       </div>
