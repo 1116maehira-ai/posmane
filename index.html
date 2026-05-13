@@ -285,7 +285,7 @@
     width: 100%;
     aspect-ratio: 16 / 9;
     padding-top: 0;
-    background: #000;
+    background: #ffffff;
     overflow: hidden;
     isolation: isolate;
   }
@@ -573,21 +573,28 @@
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 900;
     font-style: italic;
-    font-size: clamp(56px, 11vw, 180px);
+    font-size: clamp(48px, 8.5vw, 140px);
     line-height: 0.95;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
     transform: rotate(-7deg);
-    white-space: nowrap;
-    color: #f97316;
+    color: #0ea5e9;
     will-change: transform;
-    padding: 30px 0;
+    padding: 24px 0;
     text-align: center;
-    /* コーラル色のグロー */
+    /* ブルーのグロー */
     filter:
-      drop-shadow(0 8px 24px rgba(249, 115, 22, 0.25))
-      drop-shadow(0 2px 6px rgba(249, 115, 22, 0.2));
+      drop-shadow(0 8px 24px rgba(14, 165, 233, 0.28))
+      drop-shadow(0 2px 6px rgba(14, 165, 233, 0.18));
     /* JS不要。ページロード時に1度だけ再生し、最終状態でstay */
     animation: megaSlideIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+  }
+  .mega-copy .line1,
+  .mega-copy .line2 {
+    display: block;
+    white-space: nowrap;
+  }
+  .mega-copy .line2 {
+    margin-top: 8px;
   }
   @keyframes megaSlideIn {
     0% { transform: rotate(-7deg) translateX(-130vw); opacity: 0; }
@@ -790,8 +797,11 @@
   <!-- 右下のサブ英文 -->
   <div class="mega-side-en">WE DELIVER OKINAWA!</div>
 
-  <!-- ぶち抜き斜めゴシック -->
-  <div class="mega-copy" id="megaCopy">あなたの魅力！伝えたい！届けたいっ！</div>
+  <!-- ぶち抜き斜めゴシック（2行） -->
+  <div class="mega-copy" id="megaCopy">
+    <span class="line1">あなたの魅力！</span>
+    <span class="line2">伝えたい！届けたいっ！</span>
+  </div>
 
   <!-- サブテキスト + CTA + メトリクス -->
   <div class="max-w-3xl mx-auto mega-sub">
