@@ -1645,13 +1645,14 @@
             megaObserver.unobserve(megaCopy);
           }
         });
-      }, { threshold: 0.3, rootMargin: '0px 0px -10% 0px' });
+      }, { threshold: 0, rootMargin: '0px 0px 300px 0px' });
       megaObserver.observe(megaCopy);
     } else {
       // フォールバック：scrollイベントで判定
       const checkMegaCopy = () => {
         const rect = megaCopy.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.85) {
+        // 画面下端から300px手前で発火（早めに）
+        if (rect.top < window.innerHeight + 300) {
           megaCopy.classList.add('is-animating');
           window.removeEventListener('scroll', checkMegaCopy);
         }
