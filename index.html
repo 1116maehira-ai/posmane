@@ -1090,24 +1090,49 @@
       </div>
 
       <!-- 3. データ提案 -->
-      <div class="feature-card reveal reveal-delay-2">
-        <div class="flex items-start gap-4 mb-6">
-          <div class="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center flex-shrink-0">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      <!-- 3. データ提案（横長レイアウト：左テキスト、右レポート画像） -->
+      <div class="feature-card reveal reveal-delay-2 !p-8 md:!p-12 overflow-visible relative">
+        <div class="grid md:grid-cols-5 gap-8 md:gap-10 items-center">
+
+          <!-- 左：テキスト＆月次レポート例（3列分） -->
+          <div class="md:col-span-3 relative z-10">
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center flex-shrink-0">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              </div>
+              <div>
+                <div class="text-xs font-bold tracking-widest text-gold mb-1">03 / INSIGHT</div>
+                <h3 class="font-sans font-black text-xl md:text-2xl lg:text-3xl text-teal-ink leading-tight tracking-tight">
+                  配布データから、<br>次の一手を提案
+                </h3>
+              </div>
+            </div>
+            <p class="text-teal-ink/70 leading-relaxed mb-8 text-base">
+              毎月、配布状況のレポートをお届け。<br>
+              「ここ反応薄いです」「最近このエリア観光客増えてます」<br>
+              配ったら終わりの業者との違いを、体感してください。
+            </p>
+
+            <!-- 月次レポート例 -->
+            <div class="bg-sand rounded-xl p-5 border border-gold/30">
+              <div class="text-sm font-bold text-teal-deep mb-2 flex items-center gap-2">
+                <span>📊</span>
+                <span>月次レポート例</span>
+              </div>
+              <div class="text-sm text-teal-ink/75 leading-relaxed">
+                「那覇エリアは消化率92%。読谷方面は補充が必要です。次月は中部の道の駅を増やす提案を…」
+              </div>
+            </div>
           </div>
-          <div>
-            <div class="text-xs font-bold tracking-widest text-gold mb-1">03 / INSIGHT</div>
-            <h3 class="display-jp text-xl text-teal-ink">配布データから、<br>次の一手を提案</h3>
+
+          <!-- 右：レポート画像（はみ出すように配置） -->
+          <div class="md:col-span-2 relative flex justify-center md:justify-end">
+            <img src="./images/insight-report.png"
+                 alt="配布データ分析レポート"
+                 class="w-56 md:w-[110%] lg:w-[120%] h-auto max-w-none relative md:-mr-12 lg:-mr-16"
+                 style="filter: drop-shadow(0 16px 32px rgba(251, 191, 36, 0.22));">
           </div>
-        </div>
-        <p class="text-teal-ink/70 leading-relaxed mb-6">
-          毎月、配布状況のレポートをお届け。「ここ反応薄いです」「最近このエリア観光客増えてます」配ったら終わりの業者との違いを、体感してください。
-        </p>
-        <div class="bg-sand rounded-xl p-4 mt-6 border border-gold/30">
-          <div class="text-xs font-bold text-teal-deep mb-2">📊 月次レポート例</div>
-          <div class="text-xs text-teal-ink/70 leading-relaxed">
-            「那覇エリアは消化率92%。読谷方面は補充が必要です。次月は中部の道の駅を増やす提案を…」
-          </div>
+
         </div>
       </div>
 
