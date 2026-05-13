@@ -776,6 +776,7 @@
       <a href="#why" class="nav-link">選ばれる理由</a>
       <a href="#system" class="nav-link">システム</a>
       <a href="#pricing" class="nav-link">料金</a>
+      <a href="#split" class="nav-link">割り勘</a>
       <a href="#faq" class="nav-link">FAQ</a>
     </div>
     <a href="#contact" class="bg-coral text-white text-sm font-bold px-5 py-2.5 rounded-full hover:bg-orange-600 transition">
@@ -1301,18 +1302,35 @@
 </section>
 
 <!-- ============== PRICING ============== -->
-<section id="pricing" class="py-24 lg:py-32 relative overflow-hidden" style="background: linear-gradient(135deg, #083344 0%, #0e7490 50%, #083344 100%);">
+<section id="pricing" class="py-24 lg:py-32 relative overflow-hidden" style="background: linear-gradient(135deg, #fbbf24 0%, #f97316 50%, #fbbf24 100%);">
 
-  <!-- 派手な装飾：動く光球＆グラデーション -->
+  <!-- 派手な装飾：光球＆グラデーション -->
   <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-    <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full blur-3xl opacity-40" style="background: #f97316;"></div>
-    <div class="absolute top-1/4 right-0 w-[500px] h-[500px] rounded-full blur-3xl opacity-30" style="background: #fbbf24;"></div>
-    <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] rounded-full blur-3xl opacity-25" style="background: #0ea5e9;"></div>
-    <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full blur-3xl opacity-35" style="background: #f97316;"></div>
+    <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full blur-3xl opacity-50" style="background: #fef08a;"></div>
+    <div class="absolute top-1/4 right-0 w-[500px] h-[500px] rounded-full blur-3xl opacity-40" style="background: #fde047;"></div>
+    <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] rounded-full blur-3xl opacity-30" style="background: #fb923c;"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full blur-3xl opacity-45" style="background: #fef3c7;"></div>
   </div>
 
   <!-- グリッドパターン背景 -->
-  <div class="absolute inset-0 opacity-[0.05] pointer-events-none" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 50px 50px;"></div>
+  <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background-image: linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px); background-size: 50px 50px;"></div>
+
+  <!-- マネ君（走り）：左上に配置 -->
+  <div class="hidden lg:block absolute top-8 left-4 xl:left-12 z-20 pointer-events-none" style="animation: maneBounce 3s ease-in-out infinite;">
+    <img src="./images/mane-run.png" alt="" class="w-32 xl:w-40 drop-shadow-2xl" style="filter: drop-shadow(0 16px 32px rgba(8, 51, 68, 0.25));">
+  </div>
+
+  <!-- マネ君（パンフ持ち）：右下に配置 -->
+  <div class="hidden lg:block absolute bottom-8 right-4 xl:right-12 z-20 pointer-events-none" style="animation: maneBounce 3s ease-in-out infinite 0.5s;">
+    <img src="./images/mane-wink.png" alt="" class="w-36 xl:w-48 drop-shadow-2xl" style="filter: drop-shadow(0 16px 32px rgba(8, 51, 68, 0.25));">
+  </div>
+
+  <style>
+    @keyframes maneBounce {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-12px) rotate(3deg); }
+    }
+  </style>
 
   <div class="max-w-5xl mx-auto px-6 lg:px-12 relative z-10">
 
@@ -1320,27 +1338,27 @@
       <!-- 派手なラベル -->
       <div class="inline-flex items-center gap-2 mb-6">
         <div class="text-2xl animate-bounce">🔥</div>
-        <div class="bg-coral text-white text-xs font-black tracking-widest px-4 py-2 rounded-full shadow-lg" style="box-shadow: 0 0 24px rgba(249, 115, 22, 0.6);">
+        <div class="bg-white text-coral text-xs font-black tracking-widest px-4 py-2 rounded-full shadow-lg" style="box-shadow: 0 0 24px rgba(255, 255, 255, 0.8);">
           PRICING
         </div>
         <div class="text-2xl animate-bounce" style="animation-delay: 0.2s;">🔥</div>
       </div>
 
-      <h2 class="font-sans font-black text-4xl md:text-6xl lg:text-7xl mb-6 tracking-tight leading-none text-white" style="text-shadow: 0 4px 24px rgba(14, 165, 233, 0.5);">
-        まず、<span style="color: #fbbf24;">1日</span>だけ、<br>
+      <h2 class="font-sans font-black text-4xl md:text-6xl lg:text-7xl mb-6 tracking-tight leading-none text-white" style="text-shadow: 0 6px 20px rgba(8, 51, 68, 0.35), 0 2px 6px rgba(8, 51, 68, 0.3);">
+        まず、<span style="color: #083344;">1日</span>だけ、<br>
         試してみませんか？
       </h2>
 
-      <div class="inline-block bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 mt-4">
-        <p class="text-white text-sm md:text-base font-bold">
-          🎯 契約期間 <span class="text-gold">ナシ</span>　/　初期費用 <span class="text-gold">ナシ</span>　/　縛り <span class="text-gold">ナシ</span>
+      <div class="inline-block bg-white/25 backdrop-blur-md border-2 border-white/40 rounded-full px-6 py-3 mt-4 shadow-lg">
+        <p class="text-white text-sm md:text-base font-black" style="text-shadow: 0 2px 4px rgba(8, 51, 68, 0.3);">
+          🎯 契約期間 <span style="color: #083344;">ナシ</span>　/　初期費用 <span style="color: #083344;">ナシ</span>　/　縛り <span style="color: #083344;">ナシ</span>
         </p>
       </div>
     </div>
 
-    <!-- 料金カード本体（豪華バージョン） -->
+    <!-- 料金カード本体 -->
     <div class="relative reveal">
-      <div class="absolute -inset-2 rounded-3xl opacity-75 blur-xl" style="background: linear-gradient(135deg, #f97316 0%, #fbbf24 50%, #0ea5e9 100%);"></div>
+      <div class="absolute -inset-2 rounded-3xl opacity-75 blur-xl" style="background: linear-gradient(135deg, #ffffff 0%, #fef08a 50%, #ffffff 100%);"></div>
 
       <div class="relative bg-white rounded-3xl p-8 md:p-12 lg:p-16 shadow-2xl overflow-hidden">
 
@@ -1398,7 +1416,7 @@
               </div>
               <div class="flex items-center gap-4 bg-sand/60 rounded-2xl px-5 py-4 border-l-4 border-gold">
                 <div class="text-2xl flex-shrink-0">➕</div>
-                <div class="flex-1 font-bold text-teal-ink">オプション：パンフ1種追加 <span class="text-gold">+¥3,000</span></div>
+                <div class="flex-1 font-bold text-teal-ink">オプション:パンフ1種追加 <span class="text-gold">+¥3,000</span></div>
               </div>
               <div class="flex items-center gap-4 bg-sand/60 rounded-2xl px-5 py-4 border-l-4 border-teal">
                 <div class="text-2xl flex-shrink-0">⛽</div>
@@ -1440,6 +1458,76 @@
 
         </div>
       </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== SPLIT PACK（割り勘パック） ============== -->
+<section id="split" class="py-24 lg:py-32 bg-white">
+  <div class="max-w-5xl mx-auto px-6 lg:px-12">
+
+    <div class="text-center mb-16 reveal">
+      <span class="section-tag">SPLIT PACK</span>
+      <h2 class="font-sans font-black text-3xl md:text-5xl mt-6 mb-6 tracking-tight leading-tight" style="color: #0ea5e9;">
+        割り勘<span class="text-coral">パック。</span>
+      </h2>
+      <p class="text-teal-ink/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+        「1社でこの金額は負担大きいな。」という施設様へ。
+      </p>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="max-w-3xl mx-auto reveal">
+
+      <!-- キャッチ -->
+      <div class="text-center mb-12">
+        <h3 class="font-sans font-black text-2xl md:text-3xl leading-tight tracking-tight mb-4" style="color: #0ea5e9;">
+          2社〜3社合同パンフレットの制作で、<br>
+          <span class="text-coral">配布料金を割り勘</span>できます！
+        </h3>
+        <p class="text-teal-ink/70 leading-relaxed">
+          パンフレットのデザインも、ご相談ください。
+        </p>
+      </div>
+
+      <!-- メリットリスト（WHY POSMANEと同じ番号付き番号スタイル） -->
+      <div class="grid md:grid-cols-3 gap-8 lg:gap-10 mb-16">
+
+        <div class="text-center">
+          <div class="diff-num mx-auto mb-4">1</div>
+          <h4 class="font-sans font-black text-lg mb-2 tracking-tight" style="color: #0ea5e9;">配布料金を割り勘</h4>
+          <p class="text-teal-ink/70 text-sm leading-relaxed">
+            2〜3社で配布料金をシェア。<br>1社あたりの負担を大幅に削減。
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="diff-num mx-auto mb-4">2</div>
+          <h4 class="font-sans font-black text-lg mb-2 tracking-tight" style="color: #0ea5e9;">デザインもご相談OK</h4>
+          <p class="text-teal-ink/70 text-sm leading-relaxed">
+            合同パンフレットのデザイン制作も、弊社にお任せください。
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="diff-num mx-auto mb-4">3</div>
+          <h4 class="font-sans font-black text-lg mb-2 tracking-tight" style="color: #0ea5e9;">共同販促で相乗効果</h4>
+          <p class="text-teal-ink/70 text-sm leading-relaxed">
+            業態の近い施設さま同士で<br>パートナーシップを築けます。
+          </p>
+        </div>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="flex justify-center">
+        <a href="#contact" class="btn-primary">
+          割り勘パックについて問い合わせる
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
     </div>
 
   </div>
