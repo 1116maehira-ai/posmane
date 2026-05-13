@@ -964,8 +964,8 @@
 
     <div class="text-center mb-20 reveal">
       <span class="section-tag">SOLUTION</span>
-      <h2 class="font-sans font-black italic text-3xl md:text-5xl lg:text-6xl text-teal-ink mt-6 mb-6 tracking-tight leading-tight">
-        "<span class="text-coral">来客チャンスづくり</span>、<br class="md:hidden">お手伝いいたします"
+      <h2 class="font-sans font-black italic text-2xl md:text-4xl lg:text-5xl text-teal-ink mt-6 mb-6 tracking-tight leading-tight">
+        "<span class="text-coral">来客チャンスづくり</span>、<br>お手伝いいたします"
       </h2>
       <p class="text-teal-ink/70 max-w-2xl mx-auto text-base md:text-lg">
         自信を持ってご紹介できる弊社の職員が、<br class="hidden md:block">
@@ -988,7 +988,7 @@
               </div>
               <div>
                 <div class="text-xs font-bold tracking-widest text-coral mb-1">01 / NETWORK</div>
-                <h3 class="font-sans font-black text-2xl md:text-3xl lg:text-4xl text-teal-ink leading-tight tracking-tight">
+                <h3 class="font-sans font-black text-xl md:text-2xl lg:text-3xl text-teal-ink leading-tight tracking-tight">
                   沖縄本島250以上の配布箇所、<br>完全カバー
                 </h3>
               </div>
@@ -1038,30 +1038,54 @@
         </div>
       </div>
 
-      <!-- 2. リアルタイム可視化 -->
-      <div class="feature-card reveal reveal-delay-1">
-        <div class="flex items-start gap-4 mb-6">
-          <div class="w-14 h-14 rounded-2xl bg-teal/10 flex items-center justify-center flex-shrink-0">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+      <!-- 2. リアルタイム可視化（横長レイアウト：左テキスト、右スマホ画像） -->
+      <div class="feature-card reveal reveal-delay-1 !p-8 md:!p-12 overflow-visible relative">
+        <div class="grid md:grid-cols-5 gap-8 md:gap-10 items-center">
+
+          <!-- 左：テキスト＆チェックリスト（3列分） -->
+          <div class="md:col-span-3 relative z-10">
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-teal/10 flex items-center justify-center flex-shrink-0">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+              </div>
+              <div>
+                <div class="text-xs font-bold tracking-widest text-teal mb-1">02 / VISIBILITY</div>
+                <h3 class="font-sans font-black text-xl md:text-2xl lg:text-3xl text-teal-ink leading-tight tracking-tight">
+                  いつ・どこに・何枚・誰が、<br>全部リアルタイム
+                </h3>
+              </div>
+            </div>
+            <p class="text-teal-ink/70 leading-relaxed mb-8 text-base">
+              専用ダッシュボードで24時間確認可能。<br>
+              GPS位置・ラックの実物写真・先方担当者まで記録。<br>
+              「配ったかどうか」を疑う時代の終わり。
+            </p>
+
+            <!-- 機能リスト -->
+            <div class="space-y-3 pt-6 border-t border-teal-ink/10">
+              <div class="flex items-center gap-3 text-base text-teal-ink/80">
+                <span class="w-2 h-2 rounded-full bg-coral flex-shrink-0"></span>
+                <span class="font-medium">GPS座標で位置記録</span>
+              </div>
+              <div class="flex items-center gap-3 text-base text-teal-ink/80">
+                <span class="w-2 h-2 rounded-full bg-coral flex-shrink-0"></span>
+                <span class="font-medium">ラック写真を毎回撮影</span>
+              </div>
+              <div class="flex items-center gap-3 text-base text-teal-ink/80">
+                <span class="w-2 h-2 rounded-full bg-coral flex-shrink-0"></span>
+                <span class="font-medium">先方担当者名を記録</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <div class="text-xs font-bold tracking-widest text-teal mb-1">02 / VISIBILITY</div>
-            <h3 class="display-jp text-xl text-teal-ink">いつ・どこに・何枚・誰が、<br>全部リアルタイム</h3>
+
+          <!-- 右：スマホダッシュボード画像（はみ出すように大きく） -->
+          <div class="md:col-span-2 relative flex justify-center md:justify-end">
+            <img src="./images/phone-dashboard.png"
+                 alt="ポスマネ管理者ダッシュボード（スマホ）"
+                 class="w-56 md:w-[95%] lg:w-[105%] h-auto max-w-none relative md:-mr-12 lg:-mr-16 md:-my-12 lg:-my-16"
+                 style="filter: drop-shadow(0 20px 40px rgba(8, 145, 178, 0.22));">
           </div>
-        </div>
-        <p class="text-teal-ink/70 leading-relaxed mb-6">
-          専用ダッシュボードで24時間確認可能。GPS位置・ラックの実物写真・先方担当者まで記録。「配ったかどうか」を疑う時代の終わり。
-        </p>
-        <div class="space-y-2 pt-6 border-t border-teal-ink/10">
-          <div class="flex items-center gap-2 text-sm text-teal-ink/70">
-            <span class="w-1.5 h-1.5 rounded-full bg-coral"></span>GPS座標で位置記録
-          </div>
-          <div class="flex items-center gap-2 text-sm text-teal-ink/70">
-            <span class="w-1.5 h-1.5 rounded-full bg-coral"></span>ラック写真を毎回撮影
-          </div>
-          <div class="flex items-center gap-2 text-sm text-teal-ink/70">
-            <span class="w-1.5 h-1.5 rounded-full bg-coral"></span>先方担当者名を記録
-          </div>
+
         </div>
       </div>
 
