@@ -734,15 +734,92 @@
   }
   @media (max-width: 768px) {
     .hero-center-logo {
-      width: 220px;
-      margin-bottom: 20px;
+      width: 200px;
+      margin-bottom: 16px;
     }
     .hero-tagline-pill {
-      padding: 12px 24px;
-      font-size: 14px;
+      padding: 10px 18px;
+      font-size: 13px;
+      line-height: 1.4;
     }
     .mega-overlay-char { width: 90px; bottom: 10%; }
     .mega-side-en { display: none; }
+
+    /* メガコピー：スマホは縦に2行で読める大きさに */
+    .mega-copy {
+      font-size: clamp(40px, 11vw, 64px) !important;
+    }
+    .mega-stage {
+      padding: 60px 0 !important;
+    }
+
+    /* ヒーロー動画：スマホでは縦長に */
+    .hero-stage {
+      aspect-ratio: 4 / 5 !important;
+      max-height: 70vh;
+    }
+
+    /* グローバル：見出しサイズを抑える */
+    h2.font-sans, h2.display-jp {
+      word-break: keep-all;
+    }
+
+    /* PRICING：マネ君隠す（既にhidden lg:blockだが念のため） */
+    #pricing img[src*="mane-"],
+    #contact img[src*="mane-"] {
+      display: none !important;
+    }
+
+    /* PRICINGの価格表示：スマホで省スペース化 */
+    #pricing .text-3xl.md\\:text-5xl {
+      font-size: 28px !important;
+    }
+
+    /* 3カード（NETWORK/VISIBILITY/INSIGHT）：スマホは画像を素直に下に */
+    .feature-card .grid {
+      grid-template-columns: 1fr !important;
+    }
+    .feature-card img {
+      max-width: 75% !important;
+      margin: 0 auto !important;
+      margin-right: 0 !important;
+      width: auto !important;
+    }
+    .feature-card .md\\:col-span-2 {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* セクション全体のパディング縮小 */
+    section.py-24 { padding-top: 60px !important; padding-bottom: 60px !important; }
+    section.lg\\:py-32 { padding-top: 60px !important; padding-bottom: 60px !important; }
+
+    /* CTAボタン：スマホで読みやすい大きさに */
+    .btn-primary, .btn-secondary {
+      width: 100%;
+      max-width: 320px;
+      padding: 14px 24px;
+      font-size: 15px;
+    }
+  }
+
+  /* iPhone 12/13/14/15 (390px) など細めのスマホ */
+  @media (max-width: 430px) {
+    .hero-center-logo {
+      width: 180px;
+    }
+    .hero-tagline-pill {
+      font-size: 12px;
+      padding: 9px 16px;
+    }
+    .mega-copy {
+      font-size: clamp(36px, 10.5vw, 56px) !important;
+      letter-spacing: -0.04em;
+    }
+    /* セクションタグも縮小 */
+    .section-tag {
+      font-size: 10px !important;
+    }
   }
 
   /* === 数字メトリクス === */
@@ -810,7 +887,7 @@
 
 <!-- ============== NAVIGATION ============== -->
 <nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-md border-b border-teal-ink/5">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-12 h-16 md:h-20 flex items-center justify-between">
     <a href="#top" class="flex items-center">
       <img src="./images/logo.png" alt="ポスマネ" class="logo-img">
     </a>
@@ -823,10 +900,29 @@
       <a href="#split" class="nav-link">割り勘</a>
       <a href="#faq" class="nav-link">FAQ</a>
     </div>
-    <a href="#contact" class="header-cta">
-      <span class="header-cta-text">1日プランで試す</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-    </a>
+    <div class="flex items-center gap-2">
+      <a href="#contact" class="header-cta">
+        <span class="header-cta-text">1日プランで試す</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <!-- ハンバーガーメニュー（スマホのみ） -->
+      <button id="mobileMenuBtn" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-teal-ink" aria-label="メニュー">
+        <svg id="hamburgerIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        <svg id="closeIcon" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <!-- モバイルメニュー -->
+  <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-teal-ink/5">
+    <div class="px-6 py-4 space-y-3">
+      <a href="#problem" class="block py-2 text-teal-ink font-bold nav-link-mobile">課題</a>
+      <a href="#solution" class="block py-2 text-teal-ink font-bold nav-link-mobile">解決</a>
+      <a href="#why" class="block py-2 text-teal-ink font-bold nav-link-mobile">選ばれる理由</a>
+      <a href="#system" class="block py-2 text-teal-ink font-bold nav-link-mobile">システム</a>
+      <a href="#pricing" class="block py-2 text-teal-ink font-bold nav-link-mobile">料金</a>
+      <a href="#split" class="block py-2 text-teal-ink font-bold nav-link-mobile">割り勘</a>
+      <a href="#faq" class="block py-2 text-teal-ink font-bold nav-link-mobile">FAQ</a>
+    </div>
   </div>
 </nav>
 
@@ -1937,6 +2033,29 @@
 
 <!-- ============== SCRIPTS ============== -->
 <script>
+  // ============================================
+  // モバイルメニュー（ハンバーガー）
+  // ============================================
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const hamburgerIcon = document.getElementById('hamburgerIcon');
+  const closeIcon = document.getElementById('closeIcon');
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      hamburgerIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+    // リンクをタップしたら閉じる
+    document.querySelectorAll('.nav-link-mobile').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      });
+    });
+  }
+
   // ============================================
   // お問い合わせフォーム送信処理（Google Apps Script連携）
   // ============================================
