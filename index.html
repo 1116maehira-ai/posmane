@@ -576,27 +576,25 @@
     font-size: clamp(56px, 11vw, 180px);
     line-height: 0.95;
     letter-spacing: -0.04em;
-    transform: rotate(-7deg) translateX(-120vw);
-    opacity: 0;
+    transform: rotate(-7deg);
     white-space: nowrap;
     color: #f97316;
-    -webkit-text-stroke: 0;
     will-change: transform;
     padding: 30px 0;
     text-align: center;
-    /* コーラル色のグロー（軽い立体感） */
+    /* コーラル色のグロー */
     filter:
       drop-shadow(0 8px 24px rgba(249, 115, 22, 0.25))
       drop-shadow(0 2px 6px rgba(249, 115, 22, 0.2));
-  }
-  .mega-copy.is-animating {
-    animation: megaSlideIn 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    /* JS不要。ページロード時に1度だけ再生し、最終状態でstay */
+    animation: megaSlideIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
   }
   @keyframes megaSlideIn {
-    0% { transform: rotate(-7deg) translateX(-120vw); opacity: 0; }
-    60% { transform: rotate(-7deg) translateX(6vw); opacity: 1; }
-    80% { transform: rotate(-7deg) translateX(-2vw); }
-    100% { transform: rotate(-7deg) translateX(0); }
+    0% { transform: rotate(-7deg) translateX(-130vw); opacity: 0; }
+    50% { opacity: 1; }
+    65% { transform: rotate(-7deg) translateX(6vw); opacity: 1; }
+    82% { transform: rotate(-7deg) translateX(-2vw); }
+    100% { transform: rotate(-7deg) translateX(0); opacity: 1; }
   }
 
   /* メガコピー手前に飛び出すサブキャラ要素（ピン） */
@@ -1615,20 +1613,6 @@
 
 <!-- ============== SCRIPTS ============== -->
 <script>
-  // メガコピー：画面に入ったらスライドイン再生
-  const megaCopy = document.getElementById('megaCopy');
-  if (megaCopy) {
-    const megaObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          megaCopy.classList.add('is-animating');
-          megaObserver.unobserve(megaCopy);
-        }
-      });
-    }, { threshold: 0.2 });
-    megaObserver.observe(megaCopy);
-  }
-
   // スクロールリビール
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
