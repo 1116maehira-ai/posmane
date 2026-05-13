@@ -576,7 +576,9 @@
     font-size: clamp(48px, 8.5vw, 140px);
     line-height: 0.95;
     letter-spacing: -0.03em;
-    transform: rotate(-7deg);
+    /* 初期状態：画面外（左）に隠す */
+    transform: rotate(-7deg) translateX(-130vw);
+    opacity: 0;
     color: #0ea5e9;
     will-change: transform;
     padding: 24px 0;
@@ -585,8 +587,9 @@
     filter:
       drop-shadow(0 8px 24px rgba(14, 165, 233, 0.28))
       drop-shadow(0 2px 6px rgba(14, 165, 233, 0.18));
-    /* JS不要。ページロード時に1度だけ再生し、最終状態でstay */
-    animation: megaSlideIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+  }
+  .mega-copy.is-animating {
+    animation: megaSlideIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .mega-copy .line1,
   .mega-copy .line2 {
@@ -595,6 +598,13 @@
   }
   .mega-copy .line2 {
     margin-top: 8px;
+  }
+  @keyframes megaSlideIn {
+    0% { transform: rotate(-7deg) translateX(-130vw); opacity: 0; }
+    50% { opacity: 1; }
+    65% { transform: rotate(-7deg) translateX(6vw); opacity: 1; }
+    82% { transform: rotate(-7deg) translateX(-2vw); }
+    100% { transform: rotate(-7deg) translateX(0); opacity: 1; }
   }
   @keyframes megaSlideIn {
     0% { transform: rotate(-7deg) translateX(-130vw); opacity: 0; }
@@ -803,8 +813,8 @@
     <span class="line2">伝えたい！届けたいっ！</span>
   </div>
 
-  <!-- サブテキスト + CTA + メトリクス -->
-  <div class="max-w-3xl mx-auto mega-sub">
+  <!-- サブテキスト + CTA + メトリクス（一旦非表示・後で復活） -->
+  <div class="max-w-3xl mx-auto mega-sub" style="display: none;">
     <p class="text-lg md:text-xl font-bold text-teal-ink mb-2">
       観光客は、置いてないパンフまでは見てくれません。
     </p>
@@ -1623,6 +1633,40 @@
 
 <!-- ============== SCRIPTS ============== -->
 <script>
+  // メガコピー：画面に入ったらスライドイン再生
+  const megaCopy = document.getElementById('megaCopy');
+  if (megaCopy) {
+    // IntersectionObserver が使えるかチェック
+    if ('IntersectionObserver' in window) {
+      const megaObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            megaCopy.classList.add('is-animating');
+            megaObserver.unobserve(megaCopy);
+          }
+        });
+      }, { threshold: 0.3, rootMargin: '0px 0px -10% 0px' });
+      megaObserver.observe(megaCopy);
+    } else {
+      // フォールバック：scrollイベントで判定
+      const checkMegaCopy = () => {
+        const rect = megaCopy.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
+          megaCopy.classList.add('is-animating');
+          window.removeEventListener('scroll', checkMegaCopy);
+        }
+      };
+      window.addEventListener('scroll', checkMegaCopy, { passive: true });
+      checkMegaCopy();
+    }
+    // 念のための保険：5秒経っても発火してなければ強制発火
+    setTimeout(() => {
+      if (!megaCopy.classList.contains('is-animating')) {
+        megaCopy.classList.add('is-animating');
+      }
+    }, 5000);
+  }
+
   // スクロールリビール
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
