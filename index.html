@@ -279,21 +279,42 @@
     letter-spacing: -0.02em;
   }
 
-  /* === MONBRAN風ヒーロー（正解構図：キャラ主役・文字脇役） === */
+  /* === MONBRAN風ヒーロー（フルスクリーン背景動画版） === */
   .hero-stage {
     position: relative;
     min-height: 100vh;
     padding-top: 80px;
-    background:
-      radial-gradient(ellipse at top right, rgba(8, 145, 178, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at bottom left, rgba(249, 115, 22, 0.06) 0%, transparent 50%),
-      linear-gradient(180deg, #fefcf7 0%, #f0fbff 100%);
+    background: #fefcf7;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    isolation: isolate;
   }
 
-  /* ドット背景 */
+  /* 背景動画 */
+  .hero-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* 動画の上のオーバーレイ（可読性確保用）。
+     白を薄く乗せて全体を明るく、コンテンツが読めるように。 */
+  .hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.55) 70%, rgba(255, 255, 255, 0.7) 100%),
+      linear-gradient(180deg, rgba(254, 252, 247, 0.4) 0%, rgba(240, 251, 255, 0.5) 100%);
+    pointer-events: none;
+  }
+
+  /* ドット背景はオーバーレイの上に */
   .hero-stage::before {
     content: '';
     position: absolute;
@@ -301,11 +322,11 @@
     background-image: radial-gradient(circle, rgba(8, 51, 68, 0.06) 1px, transparent 1px);
     background-size: 24px 24px;
     pointer-events: none;
-    opacity: 0.4;
-    z-index: 0;
+    opacity: 0.3;
+    z-index: 2;
   }
 
-  /* === 上部ステージ：キャラ主役エリア === */
+  /* === キャンバスエリア === */
   .hero-canvas {
     position: relative;
     flex: 1;
@@ -313,7 +334,8 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 40px 24px 0;
-    z-index: 2;
+    z-index: 3;
+    min-height: 70vh;
   }
 
   /* スクロールダウン縦テキスト */
@@ -339,93 +361,49 @@
     50% { opacity: 1; transform: translateY(8px); }
   }
 
-  /* === 中央：主役の動画プレースホルダー === */
+  /* === 中央エリア（動画が背景になったので空きスペース） === */
   .hero-main-stage {
     position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 60vh;
+    min-height: 50vh;
     padding: 20px 0;
   }
-  .video-placeholder {
-    position: relative;
-    width: 100%;
-    max-width: 420px;
-    aspect-ratio: 9 / 13;
-    background: linear-gradient(135deg, #e0f2fe 0%, #cffafe 50%, #fef3c7 100%);
-    border-radius: 28px;
-    overflow: hidden;
-    box-shadow:
-      0 30px 60px -15px rgba(8, 51, 68, 0.22),
-      0 0 0 6px white,
-      0 0 0 7px rgba(8, 145, 178, 0.15);
-    animation: floaty 6s ease-in-out infinite;
-    z-index: 2;
-  }
-  @keyframes floaty {
-    0%, 100% { transform: translateY(0) rotate(-0.5deg); }
-    50% { transform: translateY(-10px) rotate(0.5deg); }
-  }
-  .video-placeholder-inner {
+
+  /* キャラクター動画再生インジケーター（右下に小さく） */
+  .video-indicator {
     position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 32px;
-  }
-  .video-play-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 12px 24px rgba(8, 145, 178, 0.25);
-    margin-bottom: 24px;
-    position: relative;
-    z-index: 2;
-  }
-  .video-play-icon::after {
-    content: '';
-    position: absolute;
-    inset: -8px;
-    border-radius: 50%;
-    border: 2px solid rgba(8, 145, 178, 0.3);
-    animation: ping 2s ease-out infinite;
-  }
-  @keyframes ping {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(1.4); opacity: 0; }
-  }
-  .character-silhouette {
-    position: absolute;
-    bottom: 18%;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
-    width: 220px;
-    height: 220px;
-    background: radial-gradient(circle at 30% 30%, #fef3c7 0%, #fde68a 60%, #fbbf24 100%);
-    border-radius: 50%;
-    filter: blur(1px);
-    opacity: 0.7;
-    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #0e7490;
+    letter-spacing: 0.1em;
+    box-shadow: 0 4px 12px rgba(8, 51, 68, 0.08);
+    z-index: 5;
   }
-  .character-silhouette::before {
+  .video-indicator::before {
     content: '';
-    position: absolute;
-    top: -36px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 110px;
-    height: 110px;
-    background: inherit;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
+    background: #f97316;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
   }
 
   /* === 右上：脇役のロゴ＋誕生コピー === */
@@ -435,7 +413,14 @@
     right: 4%;
     z-index: 5;
     text-align: right;
-    max-width: 340px;
+    max-width: 380px;
+    padding: 24px 28px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 20px 40px -12px rgba(8, 51, 68, 0.15);
   }
   .birth-ribbon {
     display: inline-block;
@@ -498,7 +483,9 @@
     font-size: 13px;
     font-weight: 700;
     color: white;
-    box-shadow: 0 8px 20px rgba(8, 51, 68, 0.15);
+    box-shadow:
+      0 12px 28px rgba(8, 51, 68, 0.25),
+      0 2px 4px rgba(8, 51, 68, 0.15);
     white-space: nowrap;
     z-index: 6;
   }
@@ -716,11 +703,12 @@
       max-width: 100%;
       text-align: center;
       margin: 0 auto 20px;
-      padding: 0 24px;
+      padding: 20px 24px;
+      background: rgba(255, 255, 255, 0.8);
     }
     .birth-logo { margin: 0 auto 12px; }
     .birth-breadcrumb { justify-content: center; }
-    .hero-main-stage { min-height: 50vh; }
+    .hero-main-stage { min-height: 40vh; }
   }
   @media (max-width: 768px) {
     .speech-bubble {
@@ -732,7 +720,6 @@
     .bubble-3 { left: 2%; top: 42%; }
     .bubble-4 { right: 2%; top: 32%; }
     .bubble-5 { right: 4%; top: 58%; }
-    .video-placeholder { max-width: 260px; }
     .mega-overlay-char { width: 90px; bottom: 10%; }
     .mega-side-en { display: none; }
     .deco-star { right: 32%; }
@@ -821,15 +808,25 @@
   </div>
 </nav>
 
-<!-- ============== HERO (MONBRAN正解構図：キャラ主役・ロゴ脇役) ============== -->
+<!-- ============== HERO (フルスクリーン背景動画版) ============== -->
 <section id="top" class="hero-stage">
+
+  <!-- 背景動画（main video） -->
+  <video class="hero-bg-video"
+         autoplay muted loop playsinline
+         poster="./images/hero.png">
+    <source src="./videos/hero.mp4" type="video/mp4">
+  </video>
+
+  <!-- 動画上の半透明オーバーレイ（コンテンツ可読性確保） -->
+  <div class="hero-bg-overlay"></div>
 
   <!-- 縦スクロール案内（左端） -->
   <div class="scroll-down-vertical">
     <span>Scroll Down ・ Scroll Down ・ Scroll Down</span>
   </div>
 
-  <!-- ============ 上部ステージ：キャラ主役エリア ============ -->
+  <!-- ============ キャンバスエリア ============ -->
   <div class="hero-canvas">
 
     <!-- 浮かぶ装飾 -->
@@ -865,24 +862,11 @@
       </div>
     </div>
 
-    <!-- 中央：主役の動画プレースホルダー -->
-    <div class="hero-main-stage">
-      <div class="video-placeholder">
-        <!-- 動画が入る予定のプレースホルダー。後で <video> タグに差し替え -->
-        <div class="character-silhouette"></div>
-        <div class="video-placeholder-inner">
-          <div class="video-play-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="#0891b2">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </div>
-          <div class="text-xs font-bold tracking-widest text-teal-deep mb-2">CHARACTER MOVIE</div>
-          <p class="text-sm text-teal-ink/70 leading-relaxed">
-            ポスマネキャラクター<br>動画がここに入ります
-          </p>
-        </div>
-      </div>
-    </div>
+    <!-- 中央：動画背景の主役空間（空きエリア） -->
+    <div class="hero-main-stage"></div>
+
+    <!-- 動画再生中インジケーター -->
+    <div class="video-indicator">LIVE ・ ON AIR</div>
 
   </div>
 
