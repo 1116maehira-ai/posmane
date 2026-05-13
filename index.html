@@ -802,7 +802,7 @@
 </section>
 
 <!-- ============== MEGA COPY ぶち抜き斜めゴシック ============== -->
-<section class="mega-stage">
+<section class="mega-stage" id="megaStage">
 
   <!-- 右下のサブ英文 -->
   <div class="mega-side-en">WE DELIVER OKINAWA!</div>
@@ -1633,26 +1633,25 @@
 
 <!-- ============== SCRIPTS ============== -->
 <script>
-  // メガコピー：画面に入ったらスライドイン再生
+  // メガコピー：mega-stageセクションが15%見えたら発火
   const megaCopy = document.getElementById('megaCopy');
-  if (megaCopy) {
-    // IntersectionObserver が使えるかチェック
+  const megaStage = document.getElementById('megaStage');
+  if (megaCopy && megaStage) {
     if ('IntersectionObserver' in window) {
       const megaObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             megaCopy.classList.add('is-animating');
-            megaObserver.unobserve(megaCopy);
+            megaObserver.unobserve(megaStage);
           }
         });
-      }, { threshold: 0, rootMargin: '0px 0px 300px 0px' });
-      megaObserver.observe(megaCopy);
+      }, { threshold: 0.15 });
+      megaObserver.observe(megaStage);
     } else {
-      // フォールバック：scrollイベントで判定
+      // フォールバック：mega-stage の上端が画面の85%位置にきたら発火
       const checkMegaCopy = () => {
-        const rect = megaCopy.getBoundingClientRect();
-        // 画面下端から300px手前で発火（早めに）
-        if (rect.top < window.innerHeight + 300) {
+        const rect = megaStage.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
           megaCopy.classList.add('is-animating');
           window.removeEventListener('scroll', checkMegaCopy);
         }
