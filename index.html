@@ -1806,8 +1806,8 @@
             お問い合わせフォーム
           </h3>
 
-          <!-- TODO: Formspreeに登録後、action にURLを入れてください -->
-          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-5">
+          <!-- お問い合わせフォーム（Google Apps Script連携） -->
+          <form id="contactForm" class="space-y-5" onsubmit="return submitForm(event)">
 
             <div>
               <label class="block text-sm font-bold text-teal-ink mb-2">会社名 <span class="text-coral">*</span></label>
@@ -1846,10 +1846,13 @@
               <textarea name="message" rows="4" placeholder="ご質問・ご要望をご記入ください" class="w-full px-4 py-3 border-2 border-teal-ink/10 rounded-xl focus:border-coral focus:outline-none transition resize-none text-teal-ink"></textarea>
             </div>
 
-            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-black text-white text-lg shadow-xl transform transition-all hover:scale-[1.02]" style="background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%); box-shadow: 0 8px 24px rgba(249, 115, 22, 0.4);">
-              送信する
+            <button type="submit" id="submitBtn" class="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-black text-white text-lg shadow-xl transform transition-all hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100" style="background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%); box-shadow: 0 8px 24px rgba(249, 115, 22, 0.4);">
+              <span id="submitBtnText">送信する</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </button>
+
+            <!-- 送信結果メッセージ -->
+            <div id="formMessage" class="hidden text-center py-4 rounded-xl text-sm font-bold"></div>
           </form>
         </div>
       </div>
@@ -1934,6 +1937,64 @@
 
 <!-- ============== SCRIPTS ============== -->
 <script>
+  // ============================================
+  // お問い合わせフォーム送信処理（Google Apps Script連携）
+  // ============================================
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbygpMRvxXDzC-LEDgdPRMC5tor0oZBYyGw0yumsEDZMHyLQ67Ly8hR_IUlQSmASwqVs/exec';
+
+  function submitForm(event) {
+    event.preventDefault();
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const submitBtnText = document.getElementById('submitBtnText');
+    const messageDiv = document.getElementById('formMessage');
+
+    // ボタンを送信中状態に
+    submitBtn.disabled = true;
+    submitBtnText.textContent = '送信中...';
+    messageDiv.className = 'hidden';
+
+    // フォームデータをURLエンコードして送信
+    const formData = new FormData(form);
+    const urlEncoded = new URLSearchParams(formData).toString();
+
+    fetch(GAS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: urlEncoded
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.result === 'success') {
+        // 成功
+        form.reset();
+        messageDiv.className = 'text-center py-5 px-4 rounded-xl text-base font-bold';
+        messageDiv.style.cssText = 'background: #ecfdf5; color: #047857; border: 2px solid #6ee7b7;';
+        messageDiv.innerHTML = '✅ お問い合わせを受け付けました！<br><span style="font-size: 13px; font-weight: 500;">担当者から2営業日以内にご連絡いたします。</span>';
+        messageDiv.classList.remove('hidden');
+        submitBtnText.textContent = '送信完了';
+        // 5秒後にボタンを元に戻す
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtnText.textContent = '送信する';
+        }, 5000);
+      } else {
+        throw new Error(data.message || '送信エラー');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      messageDiv.className = 'text-center py-5 px-4 rounded-xl text-base font-bold';
+      messageDiv.style.cssText = 'background: #fef2f2; color: #dc2626; border: 2px solid #fca5a5;';
+      messageDiv.innerHTML = '⚠️ 送信に失敗しました。<br><span style="font-size: 13px; font-weight: 500;">お手数ですが、しばらくしてから再度お試しください。</span>';
+      messageDiv.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtnText.textContent = '送信する';
+    });
+
+    return false;
+  }
+
   // メガコピー：mega-stageセクションが15%見えたら発火
   const megaCopy = document.getElementById('megaCopy');
   const megaStage = document.getElementById('megaStage');
