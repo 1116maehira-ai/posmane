@@ -1259,13 +1259,23 @@
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
-      <div class="reveal order-2 lg:order-1">
+    <div class="space-y-12 lg:space-y-16 max-w-5xl mx-auto">
+
+      <!-- 上段：画像 -->
+      <div class="reveal">
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-br from-teal/10 to-coral/10 rounded-3xl blur-2xl"></div>
+          <img src="./images/differentiation.png" alt="ポスマネのダッシュボード画面" class="relative w-full">
+        </div>
+      </div>
+
+      <!-- 下段：テキスト（中央揃え） -->
+      <div class="reveal reveal-delay-2 text-center max-w-2xl mx-auto">
         <div class="text-xs font-bold tracking-widest text-coral mb-3">DASHBOARD</div>
-        <h3 class="font-sans font-black text-2xl md:text-3xl mb-6 tracking-tight leading-tight" style="color: #0ea5e9;">
+        <h3 class="font-sans font-black text-2xl md:text-3xl mb-8 tracking-tight leading-tight" style="color: #0ea5e9;">
           配布の"いま"が、<br>一目でわかる。
         </h3>
-        <div class="space-y-4 text-teal-ink/80 leading-relaxed text-base">
+        <div class="space-y-4 text-teal-ink/80 leading-relaxed text-base inline-block text-left">
           <div class="flex gap-3">
             <div class="w-2 h-2 rounded-full bg-coral mt-2 flex-shrink-0"></div>
             <p>本日の配布数・配布完了率を即時表示</p>
@@ -1284,91 +1294,150 @@
           </div>
         </div>
       </div>
-      <div class="reveal reveal-delay-2 order-1 lg:order-2">
-        <div class="relative">
-          <div class="absolute -inset-4 bg-gradient-to-br from-teal/10 to-coral/10 rounded-3xl blur-2xl"></div>
-          <img src="./images/differentiation.png" alt="ポスマネのダッシュボード画面" class="relative w-full">
-        </div>
-      </div>
+
     </div>
 
   </div>
 </section>
 
 <!-- ============== PRICING ============== -->
-<section id="pricing" class="py-24 lg:py-32 bg-white">
-  <div class="max-w-5xl mx-auto px-6 lg:px-12">
+<section id="pricing" class="py-24 lg:py-32 relative overflow-hidden" style="background: linear-gradient(135deg, #083344 0%, #0e7490 50%, #083344 100%);">
 
-    <div class="text-center mb-16 reveal">
-      <span class="section-tag">PRICING</span>
-      <h2 class="display-jp text-3xl md:text-5xl text-teal-ink mt-6 mb-6">
-        まず、1日だけ、<br class="md:hidden">
-        <span class="text-teal">ポスマネを試してみませんか？</span>
+  <!-- 派手な装飾：動く光球＆グラデーション -->
+  <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+    <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full blur-3xl opacity-40" style="background: #f97316;"></div>
+    <div class="absolute top-1/4 right-0 w-[500px] h-[500px] rounded-full blur-3xl opacity-30" style="background: #fbbf24;"></div>
+    <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] rounded-full blur-3xl opacity-25" style="background: #0ea5e9;"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full blur-3xl opacity-35" style="background: #f97316;"></div>
+  </div>
+
+  <!-- グリッドパターン背景 -->
+  <div class="absolute inset-0 opacity-[0.05] pointer-events-none" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 50px 50px;"></div>
+
+  <div class="max-w-5xl mx-auto px-6 lg:px-12 relative z-10">
+
+    <div class="text-center mb-12 reveal">
+      <!-- 派手なラベル -->
+      <div class="inline-flex items-center gap-2 mb-6">
+        <div class="text-2xl animate-bounce">🔥</div>
+        <div class="bg-coral text-white text-xs font-black tracking-widest px-4 py-2 rounded-full shadow-lg" style="box-shadow: 0 0 24px rgba(249, 115, 22, 0.6);">
+          PRICING
+        </div>
+        <div class="text-2xl animate-bounce" style="animation-delay: 0.2s;">🔥</div>
+      </div>
+
+      <h2 class="font-sans font-black text-4xl md:text-6xl lg:text-7xl mb-6 tracking-tight leading-none text-white" style="text-shadow: 0 4px 24px rgba(14, 165, 233, 0.5);">
+        まず、<span style="color: #fbbf24;">1日</span>だけ、<br>
+        試してみませんか？
       </h2>
-      <div class="space-y-2 text-teal-ink/65 max-w-2xl mx-auto">
-        <p>試して気に入ったら、続けてください。</p>
-        <p>気に入らなかったら、それで終わりです。</p>
-        <p class="font-bold text-teal-deep">契約期間も、初期費用も、ありません。</p>
+
+      <div class="inline-block bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 mt-4">
+        <p class="text-white text-sm md:text-base font-bold">
+          🎯 契約期間 <span class="text-gold">ナシ</span>　/　初期費用 <span class="text-gold">ナシ</span>　/　縛り <span class="text-gold">ナシ</span>
+        </p>
       </div>
     </div>
 
-    <!-- 料金カード -->
-    <div class="bg-gradient-to-br from-sand to-cream rounded-3xl p-8 md:p-12 lg:p-16 border-2 border-teal/10 shadow-xl relative overflow-hidden reveal">
-      <div class="absolute top-0 right-0 w-64 h-64 bg-coral/5 rounded-full blur-3xl"></div>
+    <!-- 料金カード本体（豪華バージョン） -->
+    <div class="relative reveal">
+      <div class="absolute -inset-2 rounded-3xl opacity-75 blur-xl" style="background: linear-gradient(135deg, #f97316 0%, #fbbf24 50%, #0ea5e9 100%);"></div>
 
-      <div class="relative">
-        <div class="flex justify-center mb-6">
-          <div class="bg-teal-deep text-white text-sm font-bold px-6 py-2 rounded-full">
-            1日プラン
+      <div class="relative bg-white rounded-3xl p-8 md:p-12 lg:p-16 shadow-2xl overflow-hidden">
+
+        <div class="absolute top-0 left-0 w-32 h-32" style="background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%); clip-path: polygon(0 0, 100% 0, 0 100%);"></div>
+        <div class="absolute top-0 right-0 w-40 h-40 -translate-y-8 translate-x-8 rounded-full opacity-10" style="background: #0ea5e9;"></div>
+
+        <div class="absolute top-6 right-6 md:top-8 md:right-8 z-10">
+          <div class="bg-coral text-white text-xs md:text-sm font-black tracking-widest px-4 py-2 rounded-full transform rotate-12 shadow-xl" style="box-shadow: 0 8px 24px rgba(249, 115, 22, 0.5);">
+            ⚡ BEST DEAL
           </div>
         </div>
 
-        <div class="text-center mb-8">
-          <div class="flex items-baseline justify-center gap-2 mb-3">
-            <span class="text-2xl md:text-3xl font-bold text-teal-ink">¥</span>
-            <span class="num-hero text-6xl md:text-7xl text-coral">16,000</span>
-            <span class="text-xl md:text-2xl font-bold text-teal-ink">〜</span>
-            <span class="text-base text-teal-ink/60 ml-2">/ 1日</span>
-          </div>
-          <div class="inline-block bg-gold/20 border border-gold/40 text-teal-ink text-sm font-bold px-5 py-2 rounded-full">
-            パンフ2種類まで配布可能
-          </div>
-        </div>
+        <div class="relative">
 
-        <div class="max-w-2xl mx-auto space-y-3 mb-10 pt-8 border-t border-teal-ink/10">
-          <div class="flex items-start gap-3 py-2">
-            <div class="text-coral mt-1">▶</div>
-            <div class="flex-1 text-teal-ink/80">1日10〜15施設の巡回（最大25施設）</div>
+          <div class="flex justify-center mb-8">
+            <div class="font-sans font-black text-white text-base md:text-lg px-8 py-3 rounded-full shadow-xl" style="background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%); box-shadow: 0 12px 32px rgba(249, 115, 22, 0.4);">
+              ⭐ 1日プラン ⭐
+            </div>
           </div>
-          <div class="flex items-start gap-3 py-2 border-t border-dashed border-teal-ink/10">
-            <div class="text-coral mt-1">▶</div>
-            <div class="flex-1 text-teal-ink/80">写真付き完全レポート翌日納品</div>
-          </div>
-          <div class="flex items-start gap-3 py-2 border-t border-dashed border-teal-ink/10">
-            <div class="text-coral mt-1">▶</div>
-            <div class="flex-1 text-teal-ink/80">ダッシュボードで配布状況リアルタイム確認</div>
-          </div>
-          <div class="flex items-start gap-3 py-2 border-t border-dashed border-teal-ink/10">
-            <div class="text-coral mt-1">▶</div>
-            <div class="flex-1 text-teal-ink/80">オプション：1種追加 +¥3,000</div>
-          </div>
-          <div class="flex items-start gap-3 py-2 border-t border-dashed border-teal-ink/10">
-            <div class="text-coral mt-1">▶</div>
-            <div class="flex-1 text-teal-ink/80">燃料費・諸経費は実費精算</div>
-          </div>
-        </div>
 
-        <div class="bg-white/60 rounded-xl p-5 mb-8 text-sm text-teal-ink/70 space-y-1.5">
-          <p>※ 万一の事故・トラブルは弊社負担</p>
-          <p>※ 担当者は全員、報告義務を徹底</p>
-        </div>
+          <div class="text-center mb-8">
+            <div class="flex items-baseline justify-center gap-2 md:gap-3 mb-4 flex-wrap">
+              <span class="font-sans font-black text-3xl md:text-5xl" style="color: #f97316;">¥</span>
+              <span class="font-sans font-black leading-none tracking-tight" style="font-size: clamp(72px, 14vw, 180px); background: linear-gradient(135deg, #f97316 0%, #fbbf24 50%, #f97316 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                16,000
+              </span>
+              <span class="font-sans font-black text-3xl md:text-5xl" style="color: #f97316;">〜</span>
+            </div>
+            <div class="text-teal-ink/60 font-medium text-base md:text-lg">
+              / 1日（税込 / お試し可）
+            </div>
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#contact" class="btn-primary justify-center">
-            1日プランで試す
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#contact" class="btn-secondary justify-center">資料請求</a>
+            <div class="mt-6 inline-flex items-center gap-2 bg-gold/15 border-2 border-gold rounded-full px-6 py-3">
+              <span class="text-xl">📦</span>
+              <span class="font-bold text-teal-ink text-sm md:text-base">パンフレット2種類まで配布可能</span>
+            </div>
+          </div>
+
+          <div class="max-w-2xl mx-auto mb-10">
+            <div class="text-center text-xs font-black tracking-widest text-teal mb-6">
+              ━━━ ALL INCLUDED ━━━
+            </div>
+            <div class="grid gap-3">
+              <div class="flex items-center gap-4 bg-sand/60 rounded-2xl px-5 py-4 border-l-4 border-coral">
+                <div class="text-2xl flex-shrink-0">🗺️</div>
+                <div class="flex-1 font-bold text-teal-ink">1日10〜15施設の巡回 <span class="text-coral">（最大25施設）</span></div>
+              </div>
+              <div class="flex items-center gap-4 bg-sand/60 rounded-2xl px-5 py-4 border-l-4 border-coral">
+                <div class="text-2xl flex-shrink-0">📸</div>
+                <div class="flex-1 font-bold text-teal-ink">写真付き完全レポート <span class="text-coral">翌日納品</span></div>
+              </div>
+              <div class="flex items-center gap-4 bg-sand/60 rounded-2xl px-5 py-4 border-l-4 border-coral">
+                <div class="text-2xl flex-shrink-0">⚡</div>
+                <div class="flex-1 font-bold text-teal-ink">ダッシュボードで配布状況を <span class="text-coral">リアルタイム確認</span></div>
+              </div>
+              <div class="flex items-center gap-4 bg-sand/60 rounded-2xl px-5 py-4 border-l-4 border-gold">
+                <div class="text-2xl flex-shrink-0">➕</div>
+                <div class="flex-1 font-bold text-teal-ink">オプション：パンフ1種追加 <span class="text-gold">+¥3,000</span></div>
+              </div>
+              <div class="flex items-center gap-4 bg-sand/60 rounded-2xl px-5 py-4 border-l-4 border-teal">
+                <div class="text-2xl flex-shrink-0">⛽</div>
+                <div class="flex-1 font-bold text-teal-ink">燃料費・諸経費は実費精算</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-teal-deep/5 to-coral/5 rounded-2xl p-5 mb-10 border border-teal-ink/10">
+            <div class="grid md:grid-cols-2 gap-3 text-sm text-teal-ink/80">
+              <div class="flex items-center gap-2">
+                <span class="text-base">🛡️</span>
+                <span class="font-medium">事故・トラブルは弊社負担</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-base">📋</span>
+                <span class="font-medium">担当者は全員、報告義務を徹底</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#contact" class="group relative inline-flex items-center justify-center gap-3 px-8 py-5 rounded-full font-black text-white text-lg shadow-2xl transform transition-all hover:scale-105" style="background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%); box-shadow: 0 12px 32px rgba(249, 115, 22, 0.5);">
+              <span class="text-2xl">🚀</span>
+              <span>今すぐ1日プランで試す</span>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#contact" class="inline-flex items-center justify-center gap-2 px-8 py-5 rounded-full font-bold text-teal-ink text-lg bg-white border-2 border-teal-ink/15 hover:border-coral hover:text-coral transition-all">
+              <span class="text-xl">📩</span>
+              <span>資料請求</span>
+            </a>
+          </div>
+
+          <div class="text-center mt-8 pt-6 border-t border-teal-ink/10">
+            <p class="text-teal-ink/70 text-sm">
+              <span class="font-black text-coral">✨ 沖縄観光業の販促責任者から</span> 続々お問い合わせ中
+            </p>
+          </div>
+
         </div>
       </div>
     </div>
