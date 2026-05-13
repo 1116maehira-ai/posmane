@@ -279,19 +279,18 @@
     letter-spacing: -0.02em;
   }
 
-  /* === MONBRAN風ヒーロー（フルスクリーン背景動画版） === */
+  /* === MONBRAN風ヒーロー（フルスクリーン背景動画版・16:9） === */
   .hero-stage {
     position: relative;
-    min-height: 100vh;
-    padding-top: 80px;
-    background: #fefcf7;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    padding-top: 0;
+    background: #000;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
     isolation: isolate;
   }
 
-  /* 背景動画 */
+  /* 背景動画（100% 表示・フィルター無し） */
   .hero-bg-video {
     position: absolute;
     inset: 0;
@@ -302,40 +301,26 @@
     pointer-events: none;
   }
 
-  /* 動画の上のオーバーレイ（可読性確保用）。
-     白を薄く乗せて全体を明るく、コンテンツが読めるように。 */
-  .hero-bg-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background:
-      radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.55) 70%, rgba(255, 255, 255, 0.7) 100%),
-      linear-gradient(180deg, rgba(254, 252, 247, 0.4) 0%, rgba(240, 251, 255, 0.5) 100%);
-    pointer-events: none;
-  }
+  /* 白オーバーレイは撤去（動画100%表示） */
 
-  /* ドット背景はオーバーレイの上に */
+  /* ドット背景も撤去（動画を遮らない） */
   .hero-stage::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle, rgba(8, 51, 68, 0.06) 1px, transparent 1px);
-    background-size: 24px 24px;
-    pointer-events: none;
-    opacity: 0.3;
-    z-index: 2;
+    content: none;
   }
 
-  /* === キャンバスエリア === */
+  /* === キャンバスエリア（動画の上にコンテンツを配置） === */
   .hero-canvas {
-    position: relative;
-    flex: 1;
+    position: absolute;
+    inset: 0;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 40px 24px 0;
+    padding: 80px 24px 0;
     z-index: 3;
-    min-height: 70vh;
+    pointer-events: none;
+  }
+  .hero-canvas > * {
+    pointer-events: auto;
   }
 
   /* スクロールダウン縦テキスト */
@@ -409,42 +394,42 @@
   /* === 右上：脇役のロゴ＋誕生コピー === */
   .birth-side {
     position: absolute;
-    top: 8%;
-    right: 4%;
+    top: 4%;
+    right: 3%;
     z-index: 5;
     text-align: right;
-    max-width: 380px;
-    padding: 24px 28px;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-radius: 20px;
+    max-width: 340px;
+    padding: 18px 22px;
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 18px;
     border: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 20px 40px -12px rgba(8, 51, 68, 0.15);
+    box-shadow: 0 20px 40px -12px rgba(8, 51, 68, 0.25);
   }
   .birth-ribbon {
     display: inline-block;
     background: white;
-    padding: 5px 16px;
+    padding: 4px 14px;
     border-radius: 999px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     color: #0e7490;
     border: 1.5px solid rgba(8, 145, 178, 0.3);
     box-shadow: 0 4px 12px rgba(8, 51, 68, 0.06);
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
   .birth-logo {
-    height: 56px;
+    height: 48px;
     width: auto;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     margin-left: auto;
-    filter: drop-shadow(0 4px 12px rgba(8, 51, 68, 0.1));
+    filter: drop-shadow(0 4px 12px rgba(8, 51, 68, 0.15));
   }
   .birth-tagline {
     font-family: 'Noto Serif JP', serif;
     font-weight: 900;
-    font-size: clamp(28px, 3.8vw, 48px);
+    font-size: clamp(24px, 3vw, 38px);
     line-height: 1.1;
     color: #083344;
     letter-spacing: -0.02em;
@@ -452,26 +437,26 @@
   .birth-tagline-en {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 10px;
     color: #0891b2;
     letter-spacing: 0.15em;
     margin-top: 6px;
   }
   .birth-breadcrumb {
-    margin-top: 14px;
+    margin-top: 10px;
     font-family: 'Inter', sans-serif;
-    font-size: 10px;
+    font-size: 9px;
     color: rgba(8, 51, 68, 0.5);
     letter-spacing: 0.1em;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     justify-content: flex-end;
   }
   .birth-breadcrumb::before {
     content: '⌂';
     color: #0891b2;
-    font-size: 12px;
+    font-size: 11px;
   }
 
   /* === 吹き出し === */
@@ -817,9 +802,6 @@
          poster="./images/hero.png">
     <source src="./videos/hero.mp4" type="video/mp4">
   </video>
-
-  <!-- 動画上の半透明オーバーレイ（コンテンツ可読性確保） -->
-  <div class="hero-bg-overlay"></div>
 
   <!-- 縦スクロール案内（左端） -->
   <div class="scroll-down-vertical">
