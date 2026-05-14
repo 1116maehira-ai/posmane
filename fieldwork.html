@@ -3046,79 +3046,94 @@ function previewPosumaneImport() {
 }
 
 function commitPosumaneImport() {
-  const ta = document.getElementById('posumane-csv-paste');
-  const text = (ta?.value || '').trim();
-  if (!text) { toast('⚠️ CSVを貼り付けてください'); return; }
+  try {
+    const ta = document.getElementById('posumane-csv-paste');
+    const text = (ta?.value || '').trim();
+    if (!text) { alert('⚠️ CSVを貼り付けてください'); return; }
 
-  const parsed = parsePosumaneCSV(text);
-  if (!parsed.rows.length) { toast('⚠️ データ行が見つかりません'); return; }
+    const parsed = parsePosumaneCSV(text);
+    if (!parsed.rows.length) { alert('⚠️ データ行が見つかりません'); return; }
 
-  if (!confirm(`${parsed.rows.length}件のデータを取り込みます。よろしいですか？`)) return;
+    if (!confirm(`${parsed.rows.length}件のデータを取り込みます。よろしいですか？`)) return;
 
-  let newCount = 0, mergeCount = 0;
-  for (const row of parsed.rows) {
-    const name = (row['施設名'] || row['名称'] || row['会社名'] || '').trim();
-    if (!name) continue;
+    console.log('[posumane import] 開始', parsed.rows.length, '件');
 
-    const genre = row['ジャンル'] || '';
-    const pmArea = row['エリア'] || '';
-    const city = row['市町村'] || '';
-    const district = row['地区'] || '';
-    const addr = row['住所'] || '';
-    const phone = (row['電話番号'] || '').replace(/[^\d\-]/g,'');
-    const visitCount = parseInt(row['訪問回数'] || '0', 10) || 0;
-    const lastDate = row['最終配布日'] || '';
-    const rawStatus = (row['現在ステータス'] || '').toLowerCase().trim();
-    // ポスマネ側の done/pending は「配布状態バッジ」として保存
-    // ポスマネ複数社配布許諾営業のステータスは「⚪ 未着手」から開始
-    const deliveryStatus = rawStatus === 'done' ? 'done' : rawStatus === 'pending' ? 'pending' : rawStatus;
+    let newCount = 0, mergeCount = 0, errorCount = 0;
+    for (const row of parsed.rows) {
+      try {
+        const name = (row['施設名'] || row['名称'] || row['会社名'] || '').trim();
+        if (!name) continue;
 
-    const existing = items.find(it => it.company && it.company.replace(/\s+/g,'') === name.replace(/\s+/g,''));
+        const genre = row['ジャンル'] || '';
+        const pmArea = row['エリア'] || '';
+        const city = row['市町村'] || '';
+        const district = row['地区'] || '';
+        const addr = row['住所'] || '';
+        const phone = (row['電話番号'] || '').replace(/[^\d\-]/g,'');
+        const visitCount = parseInt(row['訪問回数'] || '0', 10) || 0;
+        const lastDate = row['最終配布日'] || '';
+        const rawStatus = (row['現在ステータス'] || '').toLowerCase().trim();
+        const deliveryStatus = rawStatus === 'done' ? 'done' : rawStatus === 'pending' ? 'pending' : rawStatus;
 
-    if (existing) {
-      // 既存：ポスマネタグだけ追加（既存データは触らない）
-      existing.campaign = 'posumane';
-      // campaignStatus は既に設定されていれば触らない、なければ untouched
-      if (!existing.campaignStatus) existing.campaignStatus = 'untouched';
-      existing.campaignMeta = existing.campaignMeta || {};
-      Object.assign(existing.campaignMeta, {
-        genre, pmArea, city, district, visitCount, lastDeliveryDate: lastDate, deliveryStatus,
-      });
-      if (!existing.addr && addr) existing.addr = addr;
-      if (!existing.phone && phone) existing.phone = phone;
-      mergeCount++;
-    } else {
-      // 新規追加：ポスマネ許諾営業ステータスは untouched から開始
-      items.push({
-        id: Date.now() + Math.floor(Math.random() * 10000),
-        company: name,
-        industry: genre,
-        area: city + (district ? ' ' + district : ''),
-        addr,
-        phone,
-        excluded: false,
-        score: 0,
-        campaign: 'posumane',
-        campaignStatus: 'untouched',
-        campaignMeta: { genre, pmArea, city, district, visitCount, lastDeliveryDate: lastDate, deliveryStatus },
-        createdAt: nowJSTISO(),
-      });
-      newCount++;
+        const existing = items.find(it => it.company && it.company.replace(/\s+/g,'') === name.replace(/\s+/g,''));
+
+        if (existing) {
+          existing.campaign = 'posumane';
+          if (!existing.campaignStatus) existing.campaignStatus = 'untouched';
+          existing.campaignMeta = existing.campaignMeta || {};
+          Object.assign(existing.campaignMeta, {
+            genre, pmArea, city, district, visitCount, lastDeliveryDate: lastDate, deliveryStatus,
+          });
+          if (!existing.addr && addr) existing.addr = addr;
+          if (!existing.phone && phone) existing.phone = phone;
+          mergeCount++;
+        } else {
+          items.push({
+            id: Date.now() + Math.floor(Math.random() * 100000),
+            company: name,
+            industry: genre,
+            area: city + (district ? ' ' + district : ''),
+            addr,
+            phone,
+            excluded: false,
+            score: 0,
+            campaign: 'posumane',
+            campaignStatus: 'untouched',
+            campaignMeta: { genre, pmArea, city, district, visitCount, lastDeliveryDate: lastDate, deliveryStatus },
+            createdAt: (typeof nowJSTISO === 'function' ? nowJSTISO() : new Date().toISOString()),
+          });
+          newCount++;
+        }
+      } catch (rowErr) {
+        errorCount++;
+        console.error('[posumane import] 行エラー:', row, rowErr);
+      }
     }
+
+    console.log('[posumane import] 反映完了 newCount=', newCount, 'mergeCount=', mergeCount, 'errorCount=', errorCount);
+
+    // save() を try/catch で包む
+    try {
+      if (typeof save === 'function') save();
+    } catch(saveErr) {
+      console.error('[posumane import] save() エラー:', saveErr);
+      alert('⚠️ 保存中にエラー：' + saveErr.message + '\n（ブラウザのコンソールに詳細）');
+    }
+
+    // モーダル閉じる
+    try { cm('m-posumane-import'); } catch(e) { console.warn('close error', e); }
+
+    // 完了通知
+    alert(`📥 取込完了！\n新規 ${newCount}件 / 統合 ${mergeCount}件\n（エラー ${errorCount}件）`);
+
+    // 再描画
+    try { renderPosumane(); } catch(e) { console.warn('renderPosumane error', e); }
+    try { if (typeof updateNavBadges === 'function') updateNavBadges(); } catch(e) { console.warn('updateNavBadges error', e); }
+
+  } catch (mainErr) {
+    console.error('[posumane import] メインエラー:', mainErr);
+    alert('❌ 取込処理でエラーが発生しました：\n' + mainErr.message + '\n\n（ブラウザのコンソール（F12）に詳細）');
   }
-
-  save();
-  cm('m-posumane-import');
-
-  if (typeof showCopyAnimation === 'function') {
-    showCopyAnimation(`📥 取込完了！🎉\n新規 ${newCount}件 / 統合 ${mergeCount}件`);
-  } else {
-    toast(`📥 取込完了：新規 ${newCount}件 / 統合 ${mergeCount}件`);
-  }
-
-  // ポスマネページを再描画（既にポスマネページにいるので renderPosumane だけ実行）
-  try { renderPosumane(); } catch(e) { console.warn('renderPosumane error', e); }
-  try { updateNavBadges(); } catch(e) { console.warn('updateNavBadges error', e); }
 }
 
 // ポスマネページ描画
