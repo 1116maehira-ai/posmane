@@ -3046,15 +3046,23 @@ function previewPosumaneImport() {
 }
 
 function commitPosumaneImport() {
+  alert('▶ STEP 1: 取り込み開始ボタン押されました');
   try {
     const ta = document.getElementById('posumane-csv-paste');
+    alert('▶ STEP 2: テキストエリア取得 = ' + (ta ? 'OK' : 'NG'));
     const text = (ta?.value || '').trim();
+    alert('▶ STEP 3: テキスト長さ = ' + text.length);
     if (!text) { alert('⚠️ CSVを貼り付けてください'); return; }
 
     const parsed = parsePosumaneCSV(text);
+    alert('▶ STEP 4: パース完了 行数 = ' + parsed.rows.length);
     if (!parsed.rows.length) { alert('⚠️ データ行が見つかりません'); return; }
 
-    if (!confirm(`${parsed.rows.length}件のデータを取り込みます。よろしいですか？`)) return;
+    if (!confirm(`${parsed.rows.length}件のデータを取り込みます。よろしいですか？`)) {
+      alert('▶ STEP 5: ユーザーがキャンセル');
+      return;
+    }
+    alert('▶ STEP 6: 取込ループ開始');
 
     console.log('[posumane import] 開始', parsed.rows.length, '件');
 
